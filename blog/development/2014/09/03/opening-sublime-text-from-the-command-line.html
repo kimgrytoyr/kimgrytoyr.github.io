@@ -82,8 +82,7 @@
 
 <p>Here’s how you can open Sublime Text from the command line:</p>
 
-<pre><code>ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/subl
-</code></pre>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">ln -s /Applications/Sublime<span class="se">\ </span>Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/subl</code></pre></div>
 
 <p>(if you’re using Sublime Text 2, just replace the path in the first argument)</p>
 
@@ -91,17 +90,16 @@
 
 <p>For this to work you must have <code>/usr/local/bin</code> in your $PATH environment variable. To check if it’s already there, type this into your command line:</p>
 
-<pre><code>echo $PATH | grep -q "/usr/local/bin"
-</code></pre>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="nv">$PATH</span> <span class="p">|</span> grep -q <span class="s2">&quot;/usr/local/bin&quot;</span></code></pre></div>
 
 <p>If nothing is returned, you must add <code>/usr/local/bin</code> to $PATH. I’m not going to cover how you do this, because there are probably hundreds of other sites that does.</p>
 
 <p>When everything is set up, you can type any of the following in your terminal:</p>
 
-<pre><code>subl &lt;filename&gt; # Opens a file
-subl &lt;foldername&gt; # Opens a folder
-subl . # Opens the current folder
-</code></pre>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">subl &lt;filename&gt; <span class="c"># Opens a file</span>
+subl &lt;foldername&gt; <span class="c"># Opens a folder</span>
+subl . <span class="c"># Opens the current folder</span></code></pre></div>
+
 
   </article>
 
@@ -114,7 +112,12 @@ subl . # Opens the current folder
 
   <div class="wrapper">
 
-  <p>I'm also on <a href="https://twitter.com/kimgrytoyr" title="@kimgrytoyr on Twitter">Twitter</a>, <a href="https://bitbucket.org/kimgrytoyr/" title="kimgrytoyr on Bitbucket">Bitbucket</a> and ...</p>
+	<p>I'm also on
+	  <a href="https://twitter.com/kimgrytoyr" title="@kimgrytoyr on Twitter">Twitter</a>,
+	  <a href="https://bitbucket.org/kimgrytoyr/" title="kimgrytoyr on Bitbucket">Bitbucket</a>,
+	  <a href="https://github.com/kimgrytoyr/" title="kimgrytoyr on GitHub">GitHub</a> and
+	  <a href="https://keybase.io/kimgrytoyr" title="kimgrytoyr on Keybase">Keybase</a>.
+	</p>
 
   </div>
 
