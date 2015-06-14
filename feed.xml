@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kim Grytøyr</title>
+    <description>Kim Grytøyr&#39;s personal website.
+</description>
+    <link>http://kimgrytoyr.com/</link>
+    <atom:link href="http://kimgrytoyr.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sun, 14 Jun 2015 17:34:41 +0200</pubDate>
+    <lastBuildDate>Sun, 14 Jun 2015 17:34:41 +0200</lastBuildDate>
+    <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>locationpicker.js</title>
+        <description>&lt;p&gt;locationpicker.js is a simple-to-use jQuery plugin that allows you to select a location on a map and receive the coordinates using a callback function. It also supports searching for a location based on an address.&lt;/p&gt;
+
+&lt;h2 id=&quot;repository&quot;&gt;Repository&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://bitbucket.org/kimgrytoyr/locationpicker.js/src&quot;&gt;https://bitbucket.org/kimgrytoyr/locationpicker.js/src&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;examples&quot;&gt;Examples&lt;/h2&gt;
+&lt;p&gt;Here are two live examples of how locationpicker.js works.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://dev.kimgrytoyr.com/locationpicker.js/example/&quot;&gt;Modal window (with address search)&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://dev.kimgrytoyr.com/locationpicker.js/example/index_fullscreen.html&quot;&gt;Fullscreen&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;requirements&quot;&gt;Requirements&lt;/h2&gt;
+&lt;p&gt;locationpicker.js requires &lt;a href=&quot;http://jquery.com/&quot;&gt;jQuery&lt;/a&gt; and the &lt;a href=&quot;https://www.google.com/intx/en_uk/work/mapsearth/products/mapsapi.html&quot;&gt;Google Maps API&lt;/a&gt; to work.&lt;/p&gt;
+
+&lt;h2 id=&quot;usage&quot;&gt;Usage&lt;/h2&gt;
+&lt;p&gt;These are the scripts you need to include in your HTML file:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;//maps.google.com/maps/api/js?sensor=false&amp;amp;libraries=places&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;js/locationpicker.js&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;In addition, you’ll need to insert a container that will hold the actual map from Google Maps:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;myMap&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The map container can be styled using CSS.&lt;/p&gt;
+
+&lt;p&gt;The last thing you need to do is to load the locationpicker.js plugin:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;#myMap&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;locationpicker&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;options&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;options&quot;&gt;Options&lt;/h2&gt;
+&lt;p&gt;You can configure locationpicker.js with a few options. Here are the defaults:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;nx&quot;&gt;location&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;latitude&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;69.675366&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;longitude&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;18.975428&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;minRadius&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;maxRadius&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;300&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;150&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;zoom&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;zoomLevelAfterAddressResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;markerTitle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Dra markøren til uteposten&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;draggable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;clickable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;mapType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;google&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;maps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;MapTypeId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;NORMAL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;mapTypeControl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;zoomControl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;panControl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;streetViewControl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;circleOptions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;strokeColor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;#0000FF&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;strokeOpacity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.45&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;strokeWeight&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;fillColor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;#0000FF&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;fillOpacity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;editable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;afterLoad&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;currentLocation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{},&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;afterChange&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;currentLocation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{},&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;location { latitude, longitude }&lt;/strong&gt; (default: 69.675366, 18.975428)
+The coordinates that will be loaded when the map is first displayed.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;minRadius&lt;/strong&gt; (default: 15)
+The minimum radius (in meters) that the user can set.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;maxRadius&lt;/strong&gt; (default: 300)
+The maximum radius (in meters) that the user can set.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;radius&lt;/strong&gt; (default: 150)
+The radius (in meters) that will be used when the map is first displayed.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;zoom&lt;/strong&gt; (default: 15)
+The zoom level that will be used when the map is first displayed.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;zoomLevelAfterAddressResult&lt;/strong&gt; (default: same as &lt;code&gt;zoom&lt;/code&gt;)
+After a successful address search, the map’s zoom level will be reset to the value of this parameter. To disable this behavior, set the value to &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;draggable&lt;/strong&gt; (default: true)
+If set to false, dragging the map to pan will not be possible.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;clickable&lt;/strong&gt; (default: true)
+If set to true, the user will be able to change location only by clicking on the map. This will also change the location when double clicking to zoom in, so you can consider setting it to false.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;mapType&lt;/strong&gt; (default: google.maps.MapTypeId.HYBRID)
+The map type to use. Valid options:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;google.maps.MapTypeId.ROADMAP (normal map)&lt;/li&gt;
+  &lt;li&gt;google.maps.MapTypeId.SATELITTE (satellite map)&lt;/li&gt;
+  &lt;li&gt;google.maps.MapTypeId.HYBRID (normal + satellite)&lt;/li&gt;
+  &lt;li&gt;google.maps.MapTypeId.TERRAIN (shows terrain info)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;mapTypeControl&lt;/strong&gt; (default: true)
+If set to false, the user will not be able to change the mapType.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;zoomControl&lt;/strong&gt; (default: true)
+If set to false, the zoom controls will be hidden.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;panControl&lt;/strong&gt; (default: true)
+If set to false, the pan controls will be hidden.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;streetViewControl&lt;/strong&gt; (default: false)
+If set to true, street view control will be shown.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;circleOptions { .. }&lt;/strong&gt;
+Options:
+* strokeColor: The color of the stroke around the radius circle.
+* strokeOpacity: The opacity of the stroke around the radius circle
+* strokeWeight: The weight/width of the stroke around the radius circle
+* fillColor: The color of the background fill of the radius circle
+* fillOpacity: The opacity of the background fill of the radius circle
+* editable: true|false (true will allow the user to change radius size by dragging the edges of the radius circle)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;markerTitle&lt;/strong&gt; (default: Dra markøren)
+The title that will be displayed when the mouse is hovered over the marker.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;afterLoad:&lt;/strong&gt; function(currentLocation, radius)
+A callback function that is called after the initial load of the map. &lt;code&gt;currentLocation&lt;/code&gt; is an object with the properties &lt;code&gt;latitude&lt;/code&gt; and &lt;code&gt;longitude&lt;/code&gt;. &lt;code&gt;radius&lt;/code&gt; contains the current radius.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;afterChange:&lt;/strong&gt; function(currentLocation, radius)
+A callback function that is called every time the location or radius changes. &lt;code&gt;currentLocation&lt;/code&gt; is an object with the properties &lt;code&gt;latitude&lt;/code&gt; and &lt;code&gt;longitude&lt;/code&gt;. &lt;code&gt;radius&lt;/code&gt; contains the current radius.&lt;/p&gt;
+
+&lt;h2 id=&quot;address-search&quot;&gt;Address search&lt;/h2&gt;
+&lt;p&gt;The plugins also supports searching for a location by providing the address. Here’s an example of how to do that:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;#myMap&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;locationpicker&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;address&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Karl Johans gate 1, Oslo, Norway&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;noResults&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// No results found, alert the user.&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If Google Maps’ geocoder is able to find a location, the first location returned from Google will be selected in the map. If not, the object &lt;code&gt;e&lt;/code&gt; will have a property called &lt;code&gt;noResults&lt;/code&gt; with the value &lt;code&gt;true&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; If a location is found, the map’s zoom level will be reset to the value provided in the config parameter &lt;code&gt;zoomLevelAfterAddressResult&lt;/code&gt; if it’s not set to &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 14 Jun 2015 18:40:00 +0200</pubDate>
+        <link>http://kimgrytoyr.com/projects/2015/06/14/locationpicker.js.html</link>
+        <guid isPermaLink="true">http://kimgrytoyr.com/projects/2015/06/14/locationpicker.js.html</guid>
+        
+        <category>javascript</category>
+        
+        <category>geodecoding</category>
+        
+        
+        <category>projects</category>
+        
+      </item>
+    
+      <item>
+        <title>Welcome to Jekyll!</title>
+        <description>&lt;p&gt;You’ll find this post in your &lt;code&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+
+&lt;p&gt;To add new posts, simply add a file in the &lt;code&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
+
+&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Tom&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints &amp;#39;Hi, Tom&amp;#39; to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://github.com/jekyll/jekyll-help&quot;&gt;Jekyll’s dedicated Help repository&lt;/a&gt;.&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 11 Jun 2015 01:10:20 +0200</pubDate>
+        <link>http://kimgrytoyr.com/jekyll/update/2015/06/11/welcome-to-jekyll.html</link>
+        <guid isPermaLink="true">http://kimgrytoyr.com/jekyll/update/2015/06/11/welcome-to-jekyll.html</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>update</category>
+        
+      </item>
+    
+      <item>
+        <title>Opening Sublime Text from the command line</title>
+        <description>&lt;p&gt;I’m using &lt;a href=&quot;http://www.sublimetext.com/3&quot;&gt;Sublime Text 3 beta&lt;/a&gt; as my text editor. It’s fast and lightweight, but at the same time it’s very powerful.&lt;/p&gt;
+
+&lt;p&gt;Here’s how you can open Sublime Text from the command line:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/subl
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(if you’re using Sublime Text 2, just replace the path in the first argument)&lt;/p&gt;
+
+&lt;p&gt;If you would rather like to use another name for the command that opens Sublime Text, just change the last part (&lt;code&gt;subl&lt;/code&gt;) of this command to whatever you want.&lt;/p&gt;
+
+&lt;p&gt;For this to work you must have &lt;code&gt;/usr/local/bin&lt;/code&gt; in your $PATH environment variable. To check if it’s already there, type this into your command line:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;echo $PATH | grep -q &quot;/usr/local/bin&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If nothing is returned, you must add &lt;code&gt;/usr/local/bin&lt;/code&gt; to $PATH. I’m not going to cover how you do this, because there are probably hundreds of other sites that does.&lt;/p&gt;
+
+&lt;p&gt;When everything is set up, you can type any of the following in your terminal:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;subl &amp;lt;filename&amp;gt; # Opens a file
+subl &amp;lt;foldername&amp;gt; # Opens a folder
+subl . # Opens the current folder
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+        <pubDate>Wed, 03 Sep 2014 22:53:36 +0200</pubDate>
+        <link>http://kimgrytoyr.com/blog/development/2014/09/03/opening-sublime-text-from-the-command-line.html</link>
+        <guid isPermaLink="true">http://kimgrytoyr.com/blog/development/2014/09/03/opening-sublime-text-from-the-command-line.html</guid>
+        
+        <category>sublime text</category>
+        
+        <category>mac</category>
+        
+        <category>command lin</category>
+        
+        <category>quick tip</category>
+        
+        
+        <category>blog</category>
+        
+        <category>development</category>
+        
+      </item>
+    
+      <item>
+        <title>Case-sensitivity problem with Git in OS X</title>
+        <description>&lt;p&gt;I’ve several times experienced problems with files and folders having incorrect case in Git repositories in OS X, so I decided to gather some possible fixes and solutions to this problem. If you have any suggestions or comments, please consider sharing it with me in a comment.&lt;/p&gt;
+
+&lt;h2 id=&quot;hacks&quot;&gt;Hacks&lt;/h2&gt;
+
+&lt;p&gt;First off, here’s a solution published at &lt;a href=&quot;https://coderwall.com/p/mgi8ja&quot;&gt;Coderwall.com&lt;/a&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;git mv filename filename_tmp
+git mv filename_tmp Filename
+git commit -m &lt;span class=&quot;s2&quot;&gt;&amp;quot;Set correct case for filename&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The author mentions that this is a hack and that it could possibly mess up other users’ repositories, and that a &lt;code&gt;git pull&lt;/code&gt; by other users won’t include this change.&lt;/p&gt;
+
+&lt;p&gt;In a comment to that article, a user suggests the following approach instead:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;git mv --force filename Filename
+git commit -m &lt;span class=&quot;s2&quot;&gt;&amp;quot;Set correct case for filename&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;According to the comment, a &lt;code&gt;git pull&lt;/code&gt; would now rename the file for other OS X users as well.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;a-permanent-fix&quot;&gt;A permanent fix&lt;/h2&gt;
+
+&lt;p&gt;As mentioned in both the article at &lt;a href=&quot;https://coderwall.com/p/mgi8ja&quot;&gt;Coderwall.com&lt;/a&gt;, and by several users in this &lt;a href=&quot;http://stackoverflow.com/questions/8904327/case-sensitivity-in-git&quot;&gt;Stackexchange post&lt;/a&gt;, OS X’s filesystem uses a &lt;em&gt;case-preserving&lt;/em&gt; format, not a &lt;em&gt;case-sensitive&lt;/em&gt; format. There are ways to get around this when working with a repository, though. Both articles suggests creating a &lt;strong&gt;disk image&lt;/strong&gt; with a &lt;em&gt;case-sensitive&lt;/em&gt; format, more specifically the &lt;strong&gt;Mac OS Extended (Case-sensitive, Journaled)&lt;/strong&gt; format.&lt;/p&gt;
+
+&lt;p&gt;Here’s a slightly rewritten version of the step-by-step list found in the article at &lt;a href=&quot;https://coderwall.com/p/mgi8ja&quot;&gt;Coderwall.com&lt;/a&gt;, explaining how to create such a disk image:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Launch Disk Utility&lt;/li&gt;
+  &lt;li&gt;Choose “New Image”&lt;/li&gt;
+  &lt;li&gt;Enter a name for your volume, e.g “Workspace”&lt;/li&gt;
+  &lt;li&gt;Set the size to something that will most likely fit your needs&lt;/li&gt;
+  &lt;li&gt;Select &lt;strong&gt;Mac OS Extended (Case-sensitive, Journaled)&lt;/strong&gt; in “Format”.&lt;/li&gt;
+  &lt;li&gt;Select “Single Partition - Apple Partition Map” in “Partitions”&lt;/li&gt;
+  &lt;li&gt;Ensure “Sparse bundle disk image” is set in “Image Format”.&lt;/li&gt;
+  &lt;li&gt;Save it somewhere on your hard drive&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The final step is to move any Git repositories to this new disk image. Any problems you’ve had with case-sensitivity will now be history.&lt;/p&gt;
+</description>
+        <pubDate>Wed, 09 Jul 2014 04:18:36 +0200</pubDate>
+        <link>http://kimgrytoyr.com/blog/development/2014/07/09/case-sensitivty-problem-with-git-in-os-x.html</link>
+        <guid isPermaLink="true">http://kimgrytoyr.com/blog/development/2014/07/09/case-sensitivty-problem-with-git-in-os-x.html</guid>
+        
+        <category>git</category>
+        
+        <category>mac</category>
+        
+        <category>case-sensitivity</category>
+        
+        <category>disk image</category>
+        
+        
+        <category>blog</category>
+        
+        <category>development</category>
+        
+      </item>
+    
+      <item>
+        <title>Going static</title>
+        <description>&lt;p&gt;My personal homepage has been powered by &lt;a href=&quot;https://wordpress.org&quot;&gt;Wordpress&lt;/a&gt; for several years. There’s nothing wrong with Wordpress, it’s a mature blogging platform with a plethora of plugins and themes to choose from. Nevertheless, lately I’ve been wanting to use a static site generator for my personal homepage. Here are some of the reasons why:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;I want to use Markdown&lt;/li&gt;
+  &lt;li&gt;I want to use my favorite editor when writing&lt;/li&gt;
+  &lt;li&gt;I can easily store my homepage source in a Git repository or in Dropbox&lt;/li&gt;
+  &lt;li&gt;I can easily host it anywhere&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Now, most of these things can also be accomplished using Wordpress, but I find the concept of using a static site generator quite interesting, so I’ve decided to give it a go.&lt;/p&gt;
+
+&lt;p&gt;I ended up with &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt;. It’s a static site generator written in Ruby, and it seems to be very flexible and quite easy to configure and use. My homepage is now hosted as a Github Page, which means that all of the contents are stored in a public Git repository.&lt;/p&gt;
+
+&lt;p&gt;Come back later to learn more about my experience with using Jekyll, as I’ll try to post useful articles about how I’m using it.&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 09 Jul 2014 01:13:00 +0200</pubDate>
+        <link>http://kimgrytoyr.com/blog/2014/07/09/going-static.html</link>
+        <guid isPermaLink="true">http://kimgrytoyr.com/blog/2014/07/09/going-static.html</guid>
+        
+        
+        <category>blog</category>
+        
+      </item>
+    
+  </channel>
+</rss>

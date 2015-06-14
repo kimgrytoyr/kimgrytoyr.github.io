@@ -6,12 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Kim Grytøyr</title>
-  <meta name="description" content="Kim Grytøyr's personal website.
-">
+  <title>Opening Sublime Text from the command line</title>
+  <meta name="description" content="I’m using Sublime Text 3 beta as my text editor. It’s fast and lightweight, but at the same time it’s very powerful.">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://kimgrytoyr.com/">
+  <link rel="canonical" href="http://kimgrytoyr.com/blog/development/2014/09/03/opening-sublime-text-from-the-command-line.html">
   <link rel="alternate" type="application/rss+xml" title="Kim Grytøyr" href="http://kimgrytoyr.com/feed.xml" />
   <link rel="icon" type="image/x-icon" href="/favicon.png" />
 </head>
@@ -71,11 +70,40 @@
 
     <div class="page-content">
       <div class="wrapper">
-        <div class="home">
+        <div class="post">
 
-  <h1 class="page-heading">Hello, I'm Kim. I'm a system developer and freelance programmer from Norway.</h1>
+  <header class="post-header">
+    <h1 class="post-title">Opening Sublime Text from the command line</h1>
+    <p class="post-meta">Posted 9 months ago on Sep 3, 2014</p>
+  </header>
 
-  <p>To get in touch with me, send me an <a href="mailto:kim@kimgrytoyr.com" title="Send me an e-mail">email</a>.</p>
+  <article class="post-content">
+    <p>I’m using <a href="http://www.sublimetext.com/3">Sublime Text 3 beta</a> as my text editor. It’s fast and lightweight, but at the same time it’s very powerful.</p>
+
+<p>Here’s how you can open Sublime Text from the command line:</p>
+
+<pre><code>ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/subl
+</code></pre>
+
+<p>(if you’re using Sublime Text 2, just replace the path in the first argument)</p>
+
+<p>If you would rather like to use another name for the command that opens Sublime Text, just change the last part (<code>subl</code>) of this command to whatever you want.</p>
+
+<p>For this to work you must have <code>/usr/local/bin</code> in your $PATH environment variable. To check if it’s already there, type this into your command line:</p>
+
+<pre><code>echo $PATH | grep -q "/usr/local/bin"
+</code></pre>
+
+<p>If nothing is returned, you must add <code>/usr/local/bin</code> to $PATH. I’m not going to cover how you do this, because there are probably hundreds of other sites that does.</p>
+
+<p>When everything is set up, you can type any of the following in your terminal:</p>
+
+<pre><code>subl &lt;filename&gt; # Opens a file
+subl &lt;foldername&gt; # Opens a folder
+subl . # Opens the current folder
+</code></pre>
+
+  </article>
 
 </div>
 

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Case-sensitivity problem with Git in OS X</title>
+  <meta name="description" content="I’ve several times experienced problems with files and folders having incorrect case in Git repositories in OS X, so I decided to gather some possible fixes ...">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://kimgrytoyr.com/blog/development/2014/07/09/case-sensitivty-problem-with-git-in-os-x.html">
+  <link rel="alternate" type="application/rss+xml" title="Kim Grytøyr" href="http://kimgrytoyr.com/feed.xml" />
+  <link rel="icon" type="image/x-icon" href="/favicon.png" />
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Kim Grytøyr</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+        
+          
+        
+          
+        
+          
+        
+          
+          <a class="page-link" href="/blog/">
+            Blog
+          </a>
+          
+        
+          
+          <a class="page-link" href="/projects/">
+            Projects
+          </a>
+          
+        
+          
+          <a class="page-link" href="/about/">
+            About
+          </a>
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Case-sensitivity problem with Git in OS X</h1>
+    <p class="post-meta">Posted 11 months ago on Jul 9, 2014</p>
+  </header>
+
+  <article class="post-content">
+    <p>I’ve several times experienced problems with files and folders having incorrect case in Git repositories in OS X, so I decided to gather some possible fixes and solutions to this problem. If you have any suggestions or comments, please consider sharing it with me in a comment.</p>
+
+<h2 id="hacks">Hacks</h2>
+
+<p>First off, here’s a solution published at <a href="https://coderwall.com/p/mgi8ja">Coderwall.com</a>:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">git mv filename filename_tmp
+git mv filename_tmp Filename
+git commit -m <span class="s2">&quot;Set correct case for filename&quot;</span></code></pre></div>
+
+<p>The author mentions that this is a hack and that it could possibly mess up other users’ repositories, and that a <code>git pull</code> by other users won’t include this change.</p>
+
+<p>In a comment to that article, a user suggests the following approach instead:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">git mv --force filename Filename
+git commit -m <span class="s2">&quot;Set correct case for filename&quot;</span></code></pre></div>
+
+<p>According to the comment, a <code>git pull</code> would now rename the file for other OS X users as well.</p>
+
+<hr />
+
+<h2 id="a-permanent-fix">A permanent fix</h2>
+
+<p>As mentioned in both the article at <a href="https://coderwall.com/p/mgi8ja">Coderwall.com</a>, and by several users in this <a href="http://stackoverflow.com/questions/8904327/case-sensitivity-in-git">Stackexchange post</a>, OS X’s filesystem uses a <em>case-preserving</em> format, not a <em>case-sensitive</em> format. There are ways to get around this when working with a repository, though. Both articles suggests creating a <strong>disk image</strong> with a <em>case-sensitive</em> format, more specifically the <strong>Mac OS Extended (Case-sensitive, Journaled)</strong> format.</p>
+
+<p>Here’s a slightly rewritten version of the step-by-step list found in the article at <a href="https://coderwall.com/p/mgi8ja">Coderwall.com</a>, explaining how to create such a disk image:</p>
+
+<ol>
+  <li>Launch Disk Utility</li>
+  <li>Choose “New Image”</li>
+  <li>Enter a name for your volume, e.g “Workspace”</li>
+  <li>Set the size to something that will most likely fit your needs</li>
+  <li>Select <strong>Mac OS Extended (Case-sensitive, Journaled)</strong> in “Format”.</li>
+  <li>Select “Single Partition - Apple Partition Map” in “Partitions”</li>
+  <li>Ensure “Sparse bundle disk image” is set in “Image Format”.</li>
+  <li>Save it somewhere on your hard drive</li>
+</ol>
+
+<p>The final step is to move any Git repositories to this new disk image. Any problems you’ve had with case-sensitivity will now be history.</p>
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+  <p>I'm also on <a href="https://twitter.com/kimgrytoyr" title="@kimgrytoyr on Twitter">Twitter</a>, <a href="https://bitbucket.org/kimgrytoyr/" title="kimgrytoyr on Bitbucket">Bitbucket</a> and ...</p>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>locationpicker.js</title>
+  <meta name="description" content="locationpicker.js is a simple-to-use jQuery plugin that allows you to select a location on a map and receive the coordinates using a callback function. It al...">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://kimgrytoyr.com/projects/2015/06/14/locationpicker.js.html">
+  <link rel="alternate" type="application/rss+xml" title="Kim Grytøyr" href="http://kimgrytoyr.com/feed.xml" />
+  <link rel="icon" type="image/x-icon" href="/favicon.png" />
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Kim Grytøyr</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+        
+          
+        
+          
+        
+          
+        
+          
+          <a class="page-link" href="/blog/">
+            Blog
+          </a>
+          
+        
+          
+          <a class="page-link" href="/projects/">
+            Projects
+          </a>
+          
+        
+          
+          <a class="page-link" href="/about/">
+            About
+          </a>
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">locationpicker.js</h1>
+    <p class="post-meta">Posted today on Jun 14, 2015</p>
+  </header>
+
+  <article class="post-content">
+    <p>locationpicker.js is a simple-to-use jQuery plugin that allows you to select a location on a map and receive the coordinates using a callback function. It also supports searching for a location based on an address.</p>
+
+<h2 id="repository">Repository</h2>
+<p><a href="https://bitbucket.org/kimgrytoyr/locationpicker.js/src">https://bitbucket.org/kimgrytoyr/locationpicker.js/src</a></p>
+
+<h2 id="examples">Examples</h2>
+<p>Here are two live examples of how locationpicker.js works.</p>
+
+<p><a href="http://dev.kimgrytoyr.com/locationpicker.js/example/">Modal window (with address search)</a></p>
+
+<p><a href="http://dev.kimgrytoyr.com/locationpicker.js/example/index_fullscreen.html">Fullscreen</a></p>
+
+<h2 id="requirements">Requirements</h2>
+<p>locationpicker.js requires <a href="http://jquery.com/">jQuery</a> and the <a href="https://www.google.com/intx/en_uk/work/mapsearth/products/mapsapi.html">Google Maps API</a> to work.</p>
+
+<h2 id="usage">Usage</h2>
+<p>These are the scripts you need to include in your HTML file:</p>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;//maps.google.com/maps/api/js?sensor=false&amp;libraries=places&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;js/locationpicker.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span></code></pre></div>
+
+<p>In addition, you’ll need to insert a container that will hold the actual map from Google Maps:</p>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;myMap&quot;</span><span class="nt">&gt;&lt;/div&gt;</span></code></pre></div>
+
+<p>The map container can be styled using CSS.</p>
+
+<p>The last thing you need to do is to load the locationpicker.js plugin:</p>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script&gt;</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myMap&#39;</span><span class="p">).</span><span class="nx">locationpicker</span><span class="p">({</span> <span class="nx">options</span> <span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span></code></pre></div>
+
+<h2 id="options">Options</h2>
+<p>You can configure locationpicker.js with a few options. Here are the defaults:</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">location</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">latitude</span><span class="o">:</span> <span class="mf">69.675366</span><span class="p">,</span>
+    <span class="nx">longitude</span><span class="o">:</span> <span class="mf">18.975428</span>
+<span class="p">},</span>
+<span class="nx">minRadius</span><span class="o">:</span> <span class="mi">15</span><span class="p">,</span>
+<span class="nx">maxRadius</span><span class="o">:</span> <span class="mi">300</span><span class="p">,</span>
+<span class="nx">radius</span><span class="o">:</span> <span class="mi">150</span><span class="p">,</span>
+<span class="nx">zoom</span><span class="o">:</span> <span class="mi">15</span><span class="p">,</span>
+<span class="nx">zoomLevelAfterAddressResult</span><span class="o">:</span> <span class="mi">15</span><span class="p">,</span>
+<span class="nx">markerTitle</span><span class="o">:</span> <span class="s2">&quot;Dra markøren til uteposten&quot;</span><span class="p">,</span>
+<span class="nx">draggable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+<span class="nx">clickable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+<span class="nx">mapType</span><span class="o">:</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">MapTypeId</span><span class="p">.</span><span class="nx">NORMAL</span><span class="p">,</span>
+<span class="nx">mapTypeControl</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+<span class="nx">zoomControl</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+<span class="nx">panControl</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+<span class="nx">streetViewControl</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+<span class="nx">circleOptions</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">strokeColor</span><span class="o">:</span> <span class="s2">&quot;#0000FF&quot;</span><span class="p">,</span>
+    <span class="nx">strokeOpacity</span><span class="o">:</span> <span class="mf">0.45</span><span class="p">,</span>
+    <span class="nx">strokeWeight</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nx">fillColor</span><span class="o">:</span> <span class="s2">&quot;#0000FF&quot;</span><span class="p">,</span>
+    <span class="nx">fillOpacity</span><span class="o">:</span> <span class="mf">0.10</span><span class="p">,</span>
+    <span class="nx">editable</span><span class="o">:</span> <span class="kc">true</span>
+<span class="p">},</span>
+<span class="nx">afterLoad</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">currentLocation</span><span class="p">,</span> <span class="nx">radius</span><span class="p">)</span> <span class="p">{},</span>
+<span class="nx">afterChange</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">currentLocation</span><span class="p">,</span> <span class="nx">radius</span><span class="p">)</span> <span class="p">{},</span></code></pre></div>
+
+<p><strong>location { latitude, longitude }</strong> (default: 69.675366, 18.975428)
+The coordinates that will be loaded when the map is first displayed.</p>
+
+<p><strong>minRadius</strong> (default: 15)
+The minimum radius (in meters) that the user can set.</p>
+
+<p><strong>maxRadius</strong> (default: 300)
+The maximum radius (in meters) that the user can set.</p>
+
+<p><strong>radius</strong> (default: 150)
+The radius (in meters) that will be used when the map is first displayed.</p>
+
+<p><strong>zoom</strong> (default: 15)
+The zoom level that will be used when the map is first displayed.</p>
+
+<p><strong>zoomLevelAfterAddressResult</strong> (default: same as <code>zoom</code>)
+After a successful address search, the map’s zoom level will be reset to the value of this parameter. To disable this behavior, set the value to <code>false</code>.</p>
+
+<p><strong>draggable</strong> (default: true)
+If set to false, dragging the map to pan will not be possible.</p>
+
+<p><strong>clickable</strong> (default: true)
+If set to true, the user will be able to change location only by clicking on the map. This will also change the location when double clicking to zoom in, so you can consider setting it to false.</p>
+
+<p><strong>mapType</strong> (default: google.maps.MapTypeId.HYBRID)
+The map type to use. Valid options:</p>
+
+<ul>
+  <li>google.maps.MapTypeId.ROADMAP (normal map)</li>
+  <li>google.maps.MapTypeId.SATELITTE (satellite map)</li>
+  <li>google.maps.MapTypeId.HYBRID (normal + satellite)</li>
+  <li>google.maps.MapTypeId.TERRAIN (shows terrain info)</li>
+</ul>
+
+<p><strong>mapTypeControl</strong> (default: true)
+If set to false, the user will not be able to change the mapType.</p>
+
+<p><strong>zoomControl</strong> (default: true)
+If set to false, the zoom controls will be hidden.</p>
+
+<p><strong>panControl</strong> (default: true)
+If set to false, the pan controls will be hidden.</p>
+
+<p><strong>streetViewControl</strong> (default: false)
+If set to true, street view control will be shown.</p>
+
+<p><strong>circleOptions { .. }</strong>
+Options:
+* strokeColor: The color of the stroke around the radius circle.
+* strokeOpacity: The opacity of the stroke around the radius circle
+* strokeWeight: The weight/width of the stroke around the radius circle
+* fillColor: The color of the background fill of the radius circle
+* fillOpacity: The opacity of the background fill of the radius circle
+* editable: true|false (true will allow the user to change radius size by dragging the edges of the radius circle)</p>
+
+<p><strong>markerTitle</strong> (default: Dra markøren)
+The title that will be displayed when the mouse is hovered over the marker.</p>
+
+<p><strong>afterLoad:</strong> function(currentLocation, radius)
+A callback function that is called after the initial load of the map. <code>currentLocation</code> is an object with the properties <code>latitude</code> and <code>longitude</code>. <code>radius</code> contains the current radius.</p>
+
+<p><strong>afterChange:</strong> function(currentLocation, radius)
+A callback function that is called every time the location or radius changes. <code>currentLocation</code> is an object with the properties <code>latitude</code> and <code>longitude</code>. <code>radius</code> contains the current radius.</p>
+
+<h2 id="address-search">Address search</h2>
+<p>The plugins also supports searching for a location by providing the address. Here’s an example of how to do that:</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myMap&#39;</span><span class="p">).</span><span class="nx">locationpicker</span><span class="p">(</span><span class="s1">&#39;address&#39;</span><span class="p">,</span> <span class="s1">&#39;Karl Johans gate 1, Oslo, Norway&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">noResults</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// No results found, alert the user.</span>
+    <span class="p">}</span>
+<span class="p">});</span></code></pre></div>
+
+<p>If Google Maps’ geocoder is able to find a location, the first location returned from Google will be selected in the map. If not, the object <code>e</code> will have a property called <code>noResults</code> with the value <code>true</code>.</p>
+
+<p><strong>Note:</strong> If a location is found, the map’s zoom level will be reset to the value provided in the config parameter <code>zoomLevelAfterAddressResult</code> if it’s not set to <code>false</code>.</p>
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+  <p>I'm also on <a href="https://twitter.com/kimgrytoyr" title="@kimgrytoyr on Twitter">Twitter</a>, <a href="https://bitbucket.org/kimgrytoyr/" title="kimgrytoyr on Bitbucket">Bitbucket</a> and ...</p>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
