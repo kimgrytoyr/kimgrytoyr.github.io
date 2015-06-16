@@ -6,8 +6,8 @@
 </description>
     <link>http://kimgrytoyr.com/</link>
     <atom:link href="http://kimgrytoyr.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 15 Jun 2015 10:20:27 +0200</pubDate>
-    <lastBuildDate>Mon, 15 Jun 2015 10:20:27 +0200</lastBuildDate>
+    <pubDate>Tue, 16 Jun 2015 15:41:53 +0200</pubDate>
+    <lastBuildDate>Tue, 16 Jun 2015 15:41:53 +0200</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -201,11 +201,11 @@ instead of crontab. The following example shows how to run &lt;strong&gt;offline
 
 &lt;p&gt;When you’ve saved the file to the specified location, type the following to load it into launchctl:&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;launchctcl load ~/Library/LaunchAgents/com.yourname.scriptname.plist&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;launchctl load ~/Library/LaunchAgents/com.yourname.scriptname.plist&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;If you ever need to remove it from launchctl, you can type the following:&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;launchctcl remove ~/Library/LaunchAgents/com.yourname.scriptname.plist&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;launchctl remove ~/Library/LaunchAgents/com.yourname.scriptname.plist&lt;/code&gt;&lt;/p&gt;
 </description>
         <pubDate>Sun, 14 Jun 2015 17:26:36 +0200</pubDate>
         <link>http://kimgrytoyr.com/blog/development/2015/06/14/using-launchctl-on-mac-osx-10-10.html</link>
