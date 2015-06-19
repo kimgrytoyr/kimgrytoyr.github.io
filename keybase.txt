@@ -1,0 +1,67 @@
+==================================================================
+https://keybase.io/kimg
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://kimgrytoyr.com
+  * I am kimg (https://keybase.io/kimg) on keybase.
+  * I have a public key with fingerprint D5C3 4A1A 3F38 780F B9AD  B25C 27F8 5761 45B0 3A31
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "fingerprint": "d5c34a1a3f38780fb9adb25c27f8576145b03a31",
+            "host": "keybase.io",
+            "key_id": "27f8576145b03a31",
+            "kid": "010124f52ee8a3e5f318f681ad21b3eb46b2cdaa51ebbfd7f9039420089ab2c961340a",
+            "uid": "012de9d6c7bdb2fee0e218633ebfc600",
+            "username": "kimg"
+        },
+        "service": {
+            "hostname": "kimgrytoyr.com",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1434741082,
+    "expire_in": 157680000,
+    "prev": "b82670f2c6b949f484844e850eb662a1cc4673264f3c64f4c42e942a2caeb8a7",
+    "seqno": 4,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.8
+Comment: https://keybase.io/crypto
+
+yMIZAnicbVJbSFRBGN6t3HTREiqSwJfTS7AqZ+bMuewmVhptmaZdfOi6zJwzZz2Z
+e9azx3U3E4mNCopE86UepCi7kEEPib1EF5Yu9BBlIEJ20VKzonywwMSaIwY9NAMz
+zP9d5v9//nTOQpfXnWelEgc6Zqvdzx6UNLpqjhl7mjliakku0MzV0blLNyJhakUt
+I2JzAU4TVQFhgAVdUGSF14kfawSKKpR1RZQlgETCC1gAXAFXa8YcBbMhOEaLDJPF
+2CNkaCz6H37dHMADHkCki5BSBQtU1AWg6JICsAYBEShBEoGqhrEIKCG6Jut+XvAj
+yPOKHzPELwEB8ZjZNc7bQY36NUmVCctTp5SnECiSwJx0VeJ5hxijVgTXUydXoz7M
+tRRwLBI3VOqU71TxD2olbTNpFalmPVNGLdM2VfMQw2ptOxpwpHYy6nCbKAnNu4SI
+EdFYE5kgTq2YYUa4AGBM1TYcW4AEJCPAK7CAo4moYdGQ4TBYdxSeLecbGmeWRIGS
+zOtQlYgf+XWksI2oIvKUSBLEQFWRJAtQQrqgsgOpCFLWGQxVTImCZc6pqyFicgHE
+0sRhZhkzwhFsN1qUa3l4f98il9vr8mQscMbA5c3K/TscL4KZrs4VORWTP8n41KcR
+j/GwvuklTW+9eOxV29sbT4sHx4+HT7kr2h6vrhw8nvBkF48aS5dceXP5brp9wc2V
+mYnRU4+evCyKbrg08OV9661rKe+Hw8GuTb6np7+fLegYvLfm6raW5Z0z2pqynpPe
+9bsLTxwc3THxwHMi7e3rXTW9nFR1DuR7Y5O+6247u/9M8OiLO4nn3eHbhW15t3z5
+W3xjR0ITM4O/9i5r/d3V1xEOni8sz87he9eOTA/NbvyapZeUoeFQKfgUh2M9yr7F
+7+INduXKXe1vpj776sBsKlV+c+e3zKLuk+dKNydrngUvfBz+IaZf52aMDXHrgOdt
+ant1VWv//j/pGieQ
+=mCdg
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/kimg
+
+==================================================================
