@@ -71,14 +71,13 @@
     <div class="page-content">
       <div class="wrapper">
         <div class="post">
+	<header class="post-header">
+		<h1 class="post-title">Using launchctl on Mac OSX 10.10 to run a script periodically</h1>
+		<p class="post-meta">Posted 5 days ago on Jun 14, 2015</p>
+	</header>
 
-  <header class="post-header">
-    <h1 class="post-title">Using launchctl on Mac OSX 10.10 to run a script periodically</h1>
-    <p class="post-meta">Posted 2 days ago on Jun 14, 2015</p>
-  </header>
-
-  <article class="post-content">
-    <p>Lately I’ve been playing around with <a href="http://www.mutt.org/">mutt</a>, a <em>“small but
+	<article class="post-content">
+		<p>Lately I’ve been playing around with <a href="http://www.mutt.org/">mutt</a>, a <em>“small but
 powerful text-based email client for Unix operating systems”</em> and
 <a href="http://offlineimap.org/">offlineimap</a>, a software that downloads your mailbox
 as a local Maildir.</p>
@@ -114,8 +113,21 @@ instead of crontab. The following example shows how to run <strong>offlineimap</
 
 <p><code>launchctl remove ~/Library/LaunchAgents/com.yourname.scriptname.plist</code></p>
 
-  </article>
+	</article>
 
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+	    /* * * CONFIGURATION VARIABLES * * */
+	    var disqus_shortname = 'kimgrytoyr';
+	    
+	    /* * * DON'T EDIT BELOW THIS LINE * * */
+	    (function() {
+	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 </div>
 
       </div>
