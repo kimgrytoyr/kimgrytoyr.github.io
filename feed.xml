@@ -6,9 +6,114 @@
 </description>
     <link>http://kimgrytoyr.com/</link>
     <atom:link href="http://kimgrytoyr.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 19 Jun 2015 21:12:09 +0200</pubDate>
-    <lastBuildDate>Fri, 19 Jun 2015 21:12:09 +0200</lastBuildDate>
+    <pubDate>Sun, 21 Jun 2015 15:48:56 +0200</pubDate>
+    <lastBuildDate>Sun, 21 Jun 2015 15:48:56 +0200</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>mutt tips &amp; tricks</title>
+        <description>&lt;p&gt;I’ve been using &lt;a href=&quot;http://www.mutt.org/&quot;&gt;mutt&lt;/a&gt; &lt;a href=&quot;/posts/email/2015/06/20/my-mutt-setup.html&quot;&gt;with offlineimap and msmtp&lt;/a&gt; for a while now, and I want to use
+this post to collect some features and tips that I’ve found myself often searching for.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;#finding-messages&quot;&gt;Finding messages in the current folder&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#common-flags&quot;&gt;Common flags&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#tagging-messages&quot;&gt;Tagging messages and doing bulk actions&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#changing-pgp-signature-filename&quot;&gt;Changing the filename of the PGP signature attachment&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#from-specific-signatures&quot;&gt;“From”-specific signatures&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;a-namefinding-messagesa-finding-messages-in-the-current-folder&quot;&gt;&lt;a name=&quot;finding-messages&quot;&gt;&lt;/a&gt; Finding messages in the current folder&lt;/h2&gt;
+&lt;p&gt;The default keybinding for searching the current folder is &lt;code&gt;l&lt;/code&gt;. After you’ve
+entered search/limiting mode, you can use a wide variety of combinations of
+flags and regular expressions to match messages:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note that limiting only matches the subject and the sender’s name by default.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;a-namecommon-flagsacommon-flags&quot;&gt;&lt;a name=&quot;common-flags&quot;&gt;&lt;/a&gt;Common flags&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;~N&lt;/code&gt; New/unread messages&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;~F&lt;/code&gt; Flagged messages&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;~B&lt;/code&gt; Search the whole message, not only subject and sender’s name&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;~A&lt;/code&gt; All messages (you can also use &lt;code&gt;all&lt;/code&gt;)&lt;/p&gt;
+
+&lt;p&gt;See the &lt;a href=&quot;http://www.mutt.org/doc/manual/manual-4.html#ss4.2&quot;&gt;official mutt documentation&lt;/a&gt; for a full list of available patterns.&lt;/p&gt;
+
+&lt;h2 id=&quot;a-nametagging-messagesatagging-messages&quot;&gt;&lt;a name=&quot;tagging-messages&quot;&gt;&lt;/a&gt;Tagging messages&lt;/h2&gt;
+&lt;p&gt;A common thing to do is to tag/mark all messages meeting certain criterias.
+This is very easy to do in &lt;a href=&quot;http://www.mutt.org/&quot;&gt;mutt&lt;/a&gt; using the &lt;code&gt;tag-pattern&lt;/code&gt; function. By
+default, this function is bound to &lt;code&gt;T&lt;/code&gt; (that’s shift+t). You can then use the
+same flags and regular expressions as you can when limiting messages.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;tag-pattern only selects messages in the current folder/mailbox&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;After tagging messages, you’ll most likely want to do something with them. This
+is where the &lt;code&gt;tag-prefix&lt;/code&gt; operator comes into play. This operator tells &lt;a href=&quot;http://www.mutt.org/&quot;&gt;mutt&lt;/a&gt;
+to apply the next operation to all tagged messages. The default keybinding for
+&lt;code&gt;tag-prefix&lt;/code&gt; is &lt;code&gt;;&lt;/code&gt; (semicolon).&lt;/p&gt;
+
+&lt;p&gt;Here’s an example of how to tag all unread messages and mark them as read:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;T &lt;span class=&quot;c&quot;&gt;# Invokes the tag-pattern function&lt;/span&gt;
+~N &lt;span class=&quot;c&quot;&gt;# Tags all unread messages&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# tag-prefix operator, next operation will be applied to all tagged messages&lt;/span&gt;
+W &lt;span class=&quot;c&quot;&gt;# Clear flag&lt;/span&gt;
+N &lt;span class=&quot;c&quot;&gt;# Clear the N (unread) flag&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;a-namechanging-pgp-signature-filenameachanging-the-pgp-signature-attachments-filename&quot;&gt;&lt;a name=&quot;changing-pgp-signature-filename&quot;&gt;&lt;/a&gt;Changing the PGP signature attachment’s filename&lt;/h2&gt;
+&lt;p&gt;When using &lt;a href=&quot;http://www.mutt.org/&quot;&gt;mutt&lt;/a&gt; with PGP, the default filename of the signature attachment
+is &lt;code&gt;noname&lt;/code&gt;. Although this is a commonly used filename, I personally want it to
+be named &lt;code&gt;signature.asc&lt;/code&gt;. To be able to do this, you’ll need to install &lt;a href=&quot;http://www.mutt.org/&quot;&gt;mutt&lt;/a&gt;
+with the &lt;code&gt;pgp-verbose-mime-patch&lt;/code&gt;. I’ve covered how to install &lt;a href=&quot;http://www.mutt.org/&quot;&gt;mutt&lt;/a&gt; on Mac
+OS X with this patch in the post &lt;a href=&quot;/posts/email/2015/06/20/my-mutt-setup.html&quot;&gt;My mutt setup&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;After you’ve installed &lt;a href=&quot;http://www.mutt.org/&quot;&gt;mutt&lt;/a&gt; with this patch, it’s very simple to change the
+signature attachment’s filename. All you have to do is add the following line to
+your &lt;code&gt;.muttrc&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;set &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;pgp_mime_signature_filename&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;signature.asc&amp;#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;a-namefrom-specific-signaturesafrom-specific-signatures&quot;&gt;&lt;a name=&quot;from-specific-signatures&quot;&gt;&lt;/a&gt;“From”-specific signatures&lt;/h2&gt;
+&lt;p&gt;I have different email addresses based on what “role” I have. One (with several aliases) is for personal stuff, one is for work related stuff and one is for my freelance company. I’d like &lt;a href=&quot;http://www.mutt.org/&quot;&gt;mutt&lt;/a&gt; to change my signature based on which address I send the email from. This is also fairly easy to accomplish. Just add the following line to &lt;code&gt;.muttrc&lt;/code&gt; for each account you would like a specific signature for:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;send-hook &lt;span class=&quot;s2&quot;&gt;&amp;quot;~f from@address1.com&amp;quot;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;set signature=~/.mutt/signature_for_address1&amp;#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This will tell &lt;a href=&quot;http://www.mutt.org/&quot;&gt;mutt&lt;/a&gt; that &lt;em&gt;“whenever I send a message from
+&lt;code&gt;from@address1.com&lt;/code&gt;, use the signature in the file
+&lt;code&gt;~/.mutt/signature_for_address1&lt;/code&gt;“&lt;/em&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;I’ll continue to add useful tips to this post.&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 21 Jun 2015 02:10:00 +0200</pubDate>
+        <link>http://kimgrytoyr.com/posts/email/2015/06/21/mutt-tips-and-tricks.html</link>
+        <guid isPermaLink="true">http://kimgrytoyr.com/posts/email/2015/06/21/mutt-tips-and-tricks.html</guid>
+        
+        <category>mutt</category>
+        
+        <category>command line</category>
+        
+        <category>email</category>
+        
+        <category>tips</category>
+        
+        
+        <category>posts</category>
+        
+        <category>email</category>
+        
+      </item>
     
       <item>
         <title>locationpicker.js</title>
@@ -208,15 +313,15 @@ instead of crontab. The following example shows how to run &lt;strong&gt;offline
 &lt;p&gt;&lt;code&gt;launchctl remove ~/Library/LaunchAgents/com.yourname.scriptname.plist&lt;/code&gt;&lt;/p&gt;
 </description>
         <pubDate>Sun, 14 Jun 2015 17:26:36 +0200</pubDate>
-        <link>http://kimgrytoyr.com/blog/development/2015/06/14/using-launchctl-on-mac-osx-10-10.html</link>
-        <guid isPermaLink="true">http://kimgrytoyr.com/blog/development/2015/06/14/using-launchctl-on-mac-osx-10-10.html</guid>
+        <link>http://kimgrytoyr.com/posts/development/2015/06/14/using-launchctl-on-mac-osx-10-10.html</link>
+        <guid isPermaLink="true">http://kimgrytoyr.com/posts/development/2015/06/14/using-launchctl-on-mac-osx-10-10.html</guid>
         
         <category>mac</category>
         
         <category>command line</category>
         
         
-        <category>blog</category>
+        <category>posts</category>
         
         <category>development</category>
         
@@ -248,8 +353,8 @@ subl . &lt;span class=&quot;c&quot;&gt;# Opens the current folder&lt;/span&gt;&l
 
 </description>
         <pubDate>Wed, 03 Sep 2014 22:53:36 +0200</pubDate>
-        <link>http://kimgrytoyr.com/blog/development/2014/09/03/opening-sublime-text-from-the-command-line.html</link>
-        <guid isPermaLink="true">http://kimgrytoyr.com/blog/development/2014/09/03/opening-sublime-text-from-the-command-line.html</guid>
+        <link>http://kimgrytoyr.com/posts/development/2014/09/03/opening-sublime-text-from-the-command-line.html</link>
+        <guid isPermaLink="true">http://kimgrytoyr.com/posts/development/2014/09/03/opening-sublime-text-from-the-command-line.html</guid>
         
         <category>sublime text</category>
         
@@ -260,7 +365,7 @@ subl . &lt;span class=&quot;c&quot;&gt;# Opens the current folder&lt;/span&gt;&l
         <category>quick tip</category>
         
         
-        <category>blog</category>
+        <category>posts</category>
         
         <category>development</category>
         
@@ -309,8 +414,8 @@ git commit -m &lt;span class=&quot;s2&quot;&gt;&amp;quot;Set correct case for fi
 &lt;p&gt;The final step is to move any Git repositories to this new disk image. Any problems you’ve had with case-sensitivity will now be history.&lt;/p&gt;
 </description>
         <pubDate>Wed, 09 Jul 2014 04:18:36 +0200</pubDate>
-        <link>http://kimgrytoyr.com/blog/development/2014/07/09/case-sensitivty-problem-with-git-in-os-x.html</link>
-        <guid isPermaLink="true">http://kimgrytoyr.com/blog/development/2014/07/09/case-sensitivty-problem-with-git-in-os-x.html</guid>
+        <link>http://kimgrytoyr.com/posts/development/2014/07/09/case-sensitivty-problem-with-git-in-os-x.html</link>
+        <guid isPermaLink="true">http://kimgrytoyr.com/posts/development/2014/07/09/case-sensitivty-problem-with-git-in-os-x.html</guid>
         
         <category>git</category>
         
@@ -321,7 +426,7 @@ git commit -m &lt;span class=&quot;s2&quot;&gt;&amp;quot;Set correct case for fi
         <category>disk image</category>
         
         
-        <category>blog</category>
+        <category>posts</category>
         
         <category>development</category>
         
@@ -346,11 +451,11 @@ git commit -m &lt;span class=&quot;s2&quot;&gt;&amp;quot;Set correct case for fi
 
 </description>
         <pubDate>Wed, 09 Jul 2014 01:13:00 +0200</pubDate>
-        <link>http://kimgrytoyr.com/blog/2014/07/09/going-static.html</link>
-        <guid isPermaLink="true">http://kimgrytoyr.com/blog/2014/07/09/going-static.html</guid>
+        <link>http://kimgrytoyr.com/posts/2014/07/09/going-static.html</link>
+        <guid isPermaLink="true">http://kimgrytoyr.com/posts/2014/07/09/going-static.html</guid>
         
         
-        <category>blog</category>
+        <category>posts</category>
         
       </item>
     

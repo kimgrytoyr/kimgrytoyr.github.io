@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>mutt tips & tricks</title>
+  <meta name="description" content="I’ve been using mutt with offlineimap and msmtp for a while now, and I want to usethis post to collect some features and tips that I’ve found myself often se...">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://kimgrytoyr.com/posts/email/2015/06/21/mutt-tips-and-tricks.html">
+  <link rel="alternate" type="application/rss+xml" title="Kim Grytøyr" href="http://kimgrytoyr.com/feed.xml" />
+  <link rel="icon" type="image/x-icon" href="/favicon.png" />
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Kim Grytøyr</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+        
+          
+        
+          
+        
+          
+        
+          
+          <a class="page-link" href="/posts/">Posts</a>
+          
+        
+          
+          <a class="page-link" href="/projects/">Projects</a>
+          
+        
+          
+          <a class="page-link" href="/about/">About</a>
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+	<header class="post-header">
+		<h1 class="post-title">mutt tips & tricks</h1>
+		<p class="post-meta">Posted today on Jun 21, 2015</p>
+	</header>
+
+	<article class="post-content">
+		<p>I’ve been using <a href="http://www.mutt.org/">mutt</a> <a href="/posts/email/2015/06/20/my-mutt-setup.html">with offlineimap and msmtp</a> for a while now, and I want to use
+this post to collect some features and tips that I’ve found myself often searching for.</p>
+
+<ol>
+  <li><a href="#finding-messages">Finding messages in the current folder</a>
+    <ul>
+      <li><a href="#common-flags">Common flags</a></li>
+    </ul>
+  </li>
+  <li><a href="#tagging-messages">Tagging messages and doing bulk actions</a></li>
+  <li><a href="#changing-pgp-signature-filename">Changing the filename of the PGP signature attachment</a></li>
+  <li><a href="#from-specific-signatures">“From”-specific signatures</a></li>
+</ol>
+
+<h2 id="a-namefinding-messagesa-finding-messages-in-the-current-folder"><a name="finding-messages"></a> Finding messages in the current folder</h2>
+<p>The default keybinding for searching the current folder is <code>l</code>. After you’ve
+entered search/limiting mode, you can use a wide variety of combinations of
+flags and regular expressions to match messages:</p>
+
+<blockquote>
+  <p>Note that limiting only matches the subject and the sender’s name by default.</p>
+</blockquote>
+
+<h1 id="a-namecommon-flagsacommon-flags"><a name="common-flags"></a>Common flags</h1>
+<p><code>~N</code> New/unread messages</p>
+
+<p><code>~F</code> Flagged messages</p>
+
+<p><code>~B</code> Search the whole message, not only subject and sender’s name</p>
+
+<p><code>~A</code> All messages (you can also use <code>all</code>)</p>
+
+<p>See the <a href="http://www.mutt.org/doc/manual/manual-4.html#ss4.2">official mutt documentation</a> for a full list of available patterns.</p>
+
+<h2 id="a-nametagging-messagesatagging-messages"><a name="tagging-messages"></a>Tagging messages</h2>
+<p>A common thing to do is to tag/mark all messages meeting certain criterias.
+This is very easy to do in <a href="http://www.mutt.org/">mutt</a> using the <code>tag-pattern</code> function. By
+default, this function is bound to <code>T</code> (that’s shift+t). You can then use the
+same flags and regular expressions as you can when limiting messages.</p>
+
+<blockquote>
+  <p>tag-pattern only selects messages in the current folder/mailbox</p>
+</blockquote>
+
+<p>After tagging messages, you’ll most likely want to do something with them. This
+is where the <code>tag-prefix</code> operator comes into play. This operator tells <a href="http://www.mutt.org/">mutt</a>
+to apply the next operation to all tagged messages. The default keybinding for
+<code>tag-prefix</code> is <code>;</code> (semicolon).</p>
+
+<p>Here’s an example of how to tag all unread messages and mark them as read:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">T <span class="c"># Invokes the tag-pattern function</span>
+~N <span class="c"># Tags all unread messages</span>
+<span class="p">;</span> <span class="c"># tag-prefix operator, next operation will be applied to all tagged messages</span>
+W <span class="c"># Clear flag</span>
+N <span class="c"># Clear the N (unread) flag</span></code></pre></div>
+
+<h2 id="a-namechanging-pgp-signature-filenameachanging-the-pgp-signature-attachments-filename"><a name="changing-pgp-signature-filename"></a>Changing the PGP signature attachment’s filename</h2>
+<p>When using <a href="http://www.mutt.org/">mutt</a> with PGP, the default filename of the signature attachment
+is <code>noname</code>. Although this is a commonly used filename, I personally want it to
+be named <code>signature.asc</code>. To be able to do this, you’ll need to install <a href="http://www.mutt.org/">mutt</a>
+with the <code>pgp-verbose-mime-patch</code>. I’ve covered how to install <a href="http://www.mutt.org/">mutt</a> on Mac
+OS X with this patch in the post <a href="/posts/email/2015/06/20/my-mutt-setup.html">My mutt setup</a>.</p>
+
+<p>After you’ve installed <a href="http://www.mutt.org/">mutt</a> with this patch, it’s very simple to change the
+signature attachment’s filename. All you have to do is add the following line to
+your <code>.muttrc</code>:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">set </span><span class="nv">pgp_mime_signature_filename</span> <span class="o">=</span> <span class="s1">&#39;signature.asc&#39;</span></code></pre></div>
+
+<h2 id="a-namefrom-specific-signaturesafrom-specific-signatures"><a name="from-specific-signatures"></a>“From”-specific signatures</h2>
+<p>I have different email addresses based on what “role” I have. One (with several aliases) is for personal stuff, one is for work related stuff and one is for my freelance company. I’d like <a href="http://www.mutt.org/">mutt</a> to change my signature based on which address I send the email from. This is also fairly easy to accomplish. Just add the following line to <code>.muttrc</code> for each account you would like a specific signature for:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">send-hook <span class="s2">&quot;~f from@address1.com&quot;</span> <span class="s1">&#39;set signature=~/.mutt/signature_for_address1&#39;</span></code></pre></div>
+
+<p>This will tell <a href="http://www.mutt.org/">mutt</a> that <em>“whenever I send a message from
+<code>from@address1.com</code>, use the signature in the file
+<code>~/.mutt/signature_for_address1</code>“</em>.</p>
+
+<hr />
+
+<p>I’ll continue to add useful tips to this post.</p>
+
+
+	</article>
+
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+	    /* * * CONFIGURATION VARIABLES * * */
+	    var disqus_shortname = 'kimgrytoyr';
+	    
+	    /* * * DON'T EDIT BELOW THIS LINE * * */
+	    (function() {
+	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+	<p>I'm also on
+	  <a href="https://twitter.com/kimgrytoyr" title="@kimgrytoyr on Twitter">Twitter</a>,
+	  <a href="https://bitbucket.org/kimgrytoyr/" title="kimgrytoyr on Bitbucket">Bitbucket</a>,
+	  <a href="https://github.com/kimgrytoyr/" title="kimgrytoyr on GitHub">GitHub</a> and
+	  <a href="https://keybase.io/kimg" title="kimg on Keybase">Keybase</a>.
+	</p>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

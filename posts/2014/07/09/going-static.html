@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Opening Sublime Text from the command line</title>
-  <meta name="description" content="I’m using Sublime Text 3 beta as my text editor. It’s fast and lightweight, but at the same time it’s very powerful.">
+  <title>Going static</title>
+  <meta name="description" content="My personal homepage has been powered by Wordpress for several years. There’s nothing wrong with Wordpress, it’s a mature blogging platform with a plethora o...">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://kimgrytoyr.com/blog/development/2014/09/03/opening-sublime-text-from-the-command-line.html">
+  <link rel="canonical" href="http://kimgrytoyr.com/posts/2014/07/09/going-static.html">
   <link rel="alternate" type="application/rss+xml" title="Kim Grytøyr" href="http://kimgrytoyr.com/feed.xml" />
   <link rel="icon" type="image/x-icon" href="/favicon.png" />
 </head>
@@ -43,21 +43,15 @@
           
         
           
-          <a class="page-link" href="/blog/">
-            Blog
-          </a>
+          <a class="page-link" href="/posts/">Posts</a>
           
         
           
-          <a class="page-link" href="/projects/">
-            Projects
-          </a>
+          <a class="page-link" href="/projects/">Projects</a>
           
         
           
-          <a class="page-link" href="/about/">
-            About
-          </a>
+          <a class="page-link" href="/about/">About</a>
           
         
       </div>
@@ -72,32 +66,25 @@
       <div class="wrapper">
         <div class="post">
 	<header class="post-header">
-		<h1 class="post-title">Opening Sublime Text from the command line</h1>
-		<p class="post-meta">Posted 9 months and 2 weeks ago on Sep 3, 2014</p>
+		<h1 class="post-title">Going static</h1>
+		<p class="post-meta">Posted 11 months and 2 weeks ago on Jul 9, 2014</p>
 	</header>
 
 	<article class="post-content">
-		<p>I’m using <a href="http://www.sublimetext.com/3">Sublime Text 3 beta</a> as my text editor. It’s fast and lightweight, but at the same time it’s very powerful.</p>
+		<p>My personal homepage has been powered by <a href="https://wordpress.org">Wordpress</a> for several years. There’s nothing wrong with Wordpress, it’s a mature blogging platform with a plethora of plugins and themes to choose from. Nevertheless, lately I’ve been wanting to use a static site generator for my personal homepage. Here are some of the reasons why:</p>
 
-<p>Here’s how you can open Sublime Text from the command line:</p>
+<ul>
+  <li>I want to use Markdown</li>
+  <li>I want to use my favorite editor when writing</li>
+  <li>I can easily store my homepage source in a Git repository or in Dropbox</li>
+  <li>I can easily host it anywhere</li>
+</ul>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">ln -s /Applications/Sublime<span class="se">\ </span>Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/subl</code></pre></div>
+<p>Now, most of these things can also be accomplished using Wordpress, but I find the concept of using a static site generator quite interesting, so I’ve decided to give it a go.</p>
 
-<p>(if you’re using Sublime Text 2, just replace the path in the first argument)</p>
+<p>I ended up with <a href="http://jekyllrb.com">Jekyll</a>. It’s a static site generator written in Ruby, and it seems to be very flexible and quite easy to configure and use. My homepage is now hosted as a Github Page, which means that all of the contents are stored in a public Git repository.</p>
 
-<p>If you would rather like to use another name for the command that opens Sublime Text, just change the last part (<code>subl</code>) of this command to whatever you want.</p>
-
-<p>For this to work you must have <code>/usr/local/bin</code> in your $PATH environment variable. To check if it’s already there, type this into your command line:</p>
-
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="nv">$PATH</span> <span class="p">|</span> grep -q <span class="s2">&quot;/usr/local/bin&quot;</span></code></pre></div>
-
-<p>If nothing is returned, you must add <code>/usr/local/bin</code> to $PATH. I’m not going to cover how you do this, because there are probably hundreds of other sites that does.</p>
-
-<p>When everything is set up, you can type any of the following in your terminal:</p>
-
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">subl &lt;filename&gt; <span class="c"># Opens a file</span>
-subl &lt;foldername&gt; <span class="c"># Opens a folder</span>
-subl . <span class="c"># Opens the current folder</span></code></pre></div>
+<p>Come back later to learn more about my experience with using Jekyll, as I’ll try to post useful articles about how I’m using it.</p>
 
 
 	</article>
