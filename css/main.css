@@ -72,6 +72,16 @@ a {
     color: #111;
     text-decoration: underline; }
 
+.divider {
+  height: 0px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border-top: 3px solid #eaeaea; }
+
+ul.related-posts {
+  list-style: none;
+  margin-left: 0px; }
+
 /**
  * Blockquotes
  */
@@ -80,8 +90,8 @@ blockquote {
   border-left: 4px solid #e8e8e8;
   padding-left: 15px;
   font-size: 18px;
-  letter-spacing: -1px;
-  font-style: italic; }
+  margin-top: 30px;
+  margin-bottom: 30px; }
   blockquote > :last-child {
     margin-bottom: 0; }
 
@@ -142,9 +152,7 @@ pre {
   .icon > svg path {
     fill: #828282; }
 
-/**
- * Site header
- */
+.post-content
 .site-header {
   border-top: 5px solid #424242;
   border-bottom: 1px solid #e8e8e8;
@@ -294,7 +302,8 @@ pre {
 .post-content {
   margin-bottom: 30px; }
   .post-content h2 {
-    font-size: 32px; }
+    font-size: 32px;
+    margin-top: 30px; }
     @media screen and (max-width: 800px) {
       .post-content h2 {
         font-size: 28px; } }

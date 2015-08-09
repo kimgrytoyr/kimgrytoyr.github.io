@@ -76,7 +76,7 @@
         <div class="post">
 	<header class="post-header">
 		<h1 class="post-title">mutt tips & tricks</h1>
-		<p class="post-meta">Posted today on Jun 21, 2015</p>
+		<p class="post-meta">Posted 1 month and 2 weeks ago on Jun 21, 2015</p>
 	</header>
 
 	<article class="post-content">
@@ -89,7 +89,11 @@ this post to collect some features and tips that I’ve found myself often searc
       <li><a href="#common-flags">Common flags</a></li>
     </ul>
   </li>
-  <li><a href="#tagging-messages">Tagging messages and doing bulk actions</a></li>
+  <li><a href="#tagging-messages">Tagging messages and doing bulk actions</a>
+    <ul>
+      <li><a href="#untagging">Untagging messages</a></li>
+    </ul>
+  </li>
   <li><a href="#changing-pgp-signature-filename">Changing the filename of the PGP signature attachment</a></li>
   <li><a href="#from-specific-signatures">“From”-specific signatures</a></li>
 </ol>
@@ -137,6 +141,9 @@ to apply the next operation to all tagged messages. The default keybinding for
 W <span class="c"># Clear flag</span>
 N <span class="c"># Clear the N (unread) flag</span></code></pre></div>
 
+<h1 id="a-nameuntaggingauntagging-messages"><a name="untagging"></a>Untagging messages</h1>
+<p>In the beginning I often found myself searching for how to untag messages. It can be done the same as you tag messages, except that you have to use CTRL instead of SHIFT: <code>^t &lt;pattern&gt;</code>. To untag all messages, type <code>^t all</code>.</p>
+
 <h2 id="a-namechanging-pgp-signature-filenameachanging-the-pgp-signature-attachments-filename"><a name="changing-pgp-signature-filename"></a>Changing the PGP signature attachment’s filename</h2>
 <p>When using <a href="http://www.mutt.org/">mutt</a> with PGP, the default filename of the signature attachment
 is <code>noname</code>. Although this is a commonly used filename, I personally want it to
@@ -164,6 +171,13 @@ your <code>.muttrc</code>:</p>
 
 	</article>
 
+	<div class="divider"></div>
+
+	
+
+	
+
+	<h1>Discussion</h1>
 	<div id="disqus_thread"></div>
 	<script type="text/javascript">
 	    /* * * CONFIGURATION VARIABLES * * */

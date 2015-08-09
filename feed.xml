@@ -6,9 +6,32 @@
 </description>
     <link>http://kimgrytoyr.com/</link>
     <atom:link href="http://kimgrytoyr.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 21 Jun 2015 16:58:07 +0200</pubDate>
-    <lastBuildDate>Sun, 21 Jun 2015 16:58:07 +0200</lastBuildDate>
+    <pubDate>Sun, 09 Aug 2015 11:29:55 +0200</pubDate>
+    <lastBuildDate>Sun, 09 Aug 2015 11:29:55 +0200</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>Deleting rows with a LEFT JOIN in MySQL</title>
+        <description>&lt;p&gt;Deleting rows with a LEFT JOIN in MySQL is as simple as this:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span class=&quot;k&quot;&gt;DELETE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;table_a&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;LEFT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;JOIN&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;table_b&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ON&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;table_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;a&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This will delete all the rows rom the &lt;strong&gt;a&lt;/strong&gt; table returned by this query.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 09 Aug 2015 13:28:36 +0200</pubDate>
+        <link>http://kimgrytoyr.com/posts/development/2015/08/09/deleteing-rows-with-a-left-join-in-mysql.html</link>
+        <guid isPermaLink="true">http://kimgrytoyr.com/posts/development/2015/08/09/deleteing-rows-with-a-left-join-in-mysql.html</guid>
+        
+        <category>mysql</category>
+        
+        <category>sql</category>
+        
+        
+        <category>posts</category>
+        
+        <category>development</category>
+        
+      </item>
     
       <item>
         <title>mutt tips &amp; tricks</title>
@@ -21,7 +44,11 @@ this post to collect some features and tips that I’ve found myself often searc
       &lt;li&gt;&lt;a href=&quot;#common-flags&quot;&gt;Common flags&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#tagging-messages&quot;&gt;Tagging messages and doing bulk actions&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#tagging-messages&quot;&gt;Tagging messages and doing bulk actions&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#untagging&quot;&gt;Untagging messages&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#changing-pgp-signature-filename&quot;&gt;Changing the filename of the PGP signature attachment&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#from-specific-signatures&quot;&gt;“From”-specific signatures&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
@@ -69,6 +96,9 @@ to apply the next operation to all tagged messages. The default keybinding for
 W &lt;span class=&quot;c&quot;&gt;# Clear flag&lt;/span&gt;
 N &lt;span class=&quot;c&quot;&gt;# Clear the N (unread) flag&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
+&lt;h1 id=&quot;a-nameuntaggingauntagging-messages&quot;&gt;&lt;a name=&quot;untagging&quot;&gt;&lt;/a&gt;Untagging messages&lt;/h1&gt;
+&lt;p&gt;In the beginning I often found myself searching for how to untag messages. It can be done the same as you tag messages, except that you have to use CTRL instead of SHIFT: &lt;code&gt;^t &amp;lt;pattern&amp;gt;&lt;/code&gt;. To untag all messages, type &lt;code&gt;^t all&lt;/code&gt;.&lt;/p&gt;
+
 &lt;h2 id=&quot;a-namechanging-pgp-signature-filenameachanging-the-pgp-signature-attachments-filename&quot;&gt;&lt;a name=&quot;changing-pgp-signature-filename&quot;&gt;&lt;/a&gt;Changing the PGP signature attachment’s filename&lt;/h2&gt;
 &lt;p&gt;When using &lt;a href=&quot;http://www.mutt.org/&quot;&gt;mutt&lt;/a&gt; with PGP, the default filename of the signature attachment
 is &lt;code&gt;noname&lt;/code&gt;. Although this is a commonly used filename, I personally want it to
@@ -99,8 +129,6 @@ your &lt;code&gt;.muttrc&lt;/code&gt;:&lt;/p&gt;
         <guid isPermaLink="true">http://kimgrytoyr.com/posts/email/2015/06/21/mutt-tips-and-tricks.html</guid>
         
         <category>mutt</category>
-        
-        <category>command line</category>
         
         <category>email</category>
         
