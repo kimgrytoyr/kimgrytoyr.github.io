@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Deleting rows with a LEFT JOIN in MySQL</title>
-  <meta name="description" content="Deleting rows with a LEFT JOIN in MySQL is as simple as this:">
+  <meta name="description" content="This is something I don’t do that often, and I always forget the correct syntax. Thus this post.">
 
   <link rel="stylesheet" href="/css/main.css">
   <link rel="canonical" href="http://kimgrytoyr.com/posts/development/2015/08/09/deleteing-rows-with-a-left-join-in-mysql.html">
@@ -80,11 +80,19 @@
 	</header>
 
 	<article class="post-content">
-		<p>Deleting rows with a LEFT JOIN in MySQL is as simple as this:</p>
+		<p>This is something I don’t do that often, and I always forget the correct syntax. Thus this post.</p>
 
-<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">DELETE</span> <span class="n">a</span> <span class="k">FROM</span> <span class="n">table_a</span> <span class="n">a</span> <span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">table_b</span> <span class="n">b</span> <span class="k">ON</span> <span class="n">b</span><span class="p">.</span><span class="n">table_id</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span><span class="p">;</span></code></pre></div>
+<p>Let’s say you have a table <strong>images</strong> and a table <strong>users</strong>. Now you want to delete all rows in table <strong>images</strong> that are associated with rows in the table <strong>users</strong> that are marked as deleted.</p>
 
-<p>This will delete all the rows rom the <strong>a</strong> table returned by this query.</p>
+<p>First, I usually do a visual inspection of the rows that will be deleted:</p>
+
+<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">i</span><span class="p">.</span><span class="o">*</span> <span class="k">FROM</span> <span class="n">images</span> <span class="n">i</span> <span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">users</span> <span class="n">u</span> <span class="k">ON</span> <span class="n">i</span><span class="p">.</span><span class="n">user_id</span> <span class="o">=</span> <span class="n">u</span><span class="p">.</span><span class="n">id</span> <span class="k">WHERE</span> <span class="n">u</span><span class="p">.</span><span class="n">deleted</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span></code></pre></div>
+
+<p>The rows returned by this query are the rows that will be deleted when you run the following query:</p>
+
+<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">DELETE</span> <span class="n">i</span> <span class="k">FROM</span> <span class="n">images</span> <span class="n">i</span> <span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">users</span> <span class="n">u</span> <span class="k">ON</span> <span class="n">i</span><span class="p">.</span><span class="n">user_id</span> <span class="o">=</span> <span class="n">u</span><span class="p">.</span><span class="n">id</span> <span class="k">WHERE</span> <span class="n">u</span><span class="p">.</span><span class="n">deleted</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span></code></pre></div>
+
+<p>They key part here is to specify which table you want to delete from. In this case it’s the table <code>i</code>, which is the <code>images</code> table.</p>
 
 	</article>
 
