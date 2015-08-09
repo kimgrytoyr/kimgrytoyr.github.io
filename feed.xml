@@ -6,9 +6,71 @@
 </description>
     <link>http://kimgrytoyr.com/</link>
     <atom:link href="http://kimgrytoyr.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 09 Aug 2015 15:08:39 +0200</pubDate>
-    <lastBuildDate>Sun, 09 Aug 2015 15:08:39 +0200</lastBuildDate>
+    <pubDate>Sun, 09 Aug 2015 15:38:10 +0200</pubDate>
+    <lastBuildDate>Sun, 09 Aug 2015 15:38:10 +0200</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>Basic usage of git-svn</title>
+        <description>&lt;p&gt;This is a small guide I wrote for my own convenience when I recently was converting an SVN repository to a Git repository. I’ve published it here so that I can easily look up the things I need to remember.&lt;/p&gt;
+
+&lt;p&gt;I’ve found most of these examples in the excellent official &lt;a href=&quot;http://git-scm.com/docs/git-svn&quot;&gt;git-svn documentation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;cloning-the-svn-repository&quot;&gt;Cloning the SVN repository&lt;/h2&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;git svn clone &amp;lt;repo-url&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;adding-another-remote&quot;&gt;Adding another remote&lt;/h2&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;git remote add &amp;lt;remote-name&amp;gt; &amp;lt;remote-url&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;fetching-and-rebasing-changes-from-svn&quot;&gt;Fetching and rebasing changes from SVN&lt;/h2&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;git svn fetch &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git svn rebase&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Note that the git-svn documentation has a section discussing rebase vs pull/merge:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Prefer to use git svn rebase or git rebase, rather than git pull or git merge to synchronize unintegrated commits with a git svn branch. Doing so will keep the history of unintegrated commits linear with respect to the upstream SVN repository and allow the use of the preferred git svn dcommit subcommand to push unintegrated commits back into SVN.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;doing-work-and-pushing-to-svn&quot;&gt;Doing work and pushing to SVN&lt;/h2&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;git add &amp;lt;file&amp;gt;
+git commit -m &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;lt;commit message&amp;gt;&amp;quot;&lt;/span&gt;
+git svn dcommit &lt;span class=&quot;c&quot;&gt;# This will push your changes to the SVN repository&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;pushing-to-other-remotes&quot;&gt;Pushing to other remotes&lt;/h2&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;git push &amp;lt;remote-name&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;see-what-will-be-pushed-to-svn&quot;&gt;See what will be pushed to SVN&lt;/h2&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;git diff git-svn HEAD &lt;span class=&quot;c&quot;&gt;# Assuming your remote SVN branch is called git-svn&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://stackoverflow.com/a/9776318/1094451&quot;&gt;http://stackoverflow.com/a/9776318/1094451&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;git svn dcommit --dry-run&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://stackoverflow.com/a/6040113/1094451&quot;&gt;http://stackoverflow.com/a/6040113/1094451&lt;/a&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 09 Aug 2015 17:13:36 +0200</pubDate>
+        <link>http://kimgrytoyr.com/posts/development/2015/08/09/basic-usage-of-git-svn.html</link>
+        <guid isPermaLink="true">http://kimgrytoyr.com/posts/development/2015/08/09/basic-usage-of-git-svn.html</guid>
+        
+        <category>git</category>
+        
+        <category>svn</category>
+        
+        <category>git-svn</category>
+        
+        
+        <category>posts</category>
+        
+        <category>development</category>
+        
+      </item>
     
       <item>
         <title>Deleting rows with a LEFT JOIN in MySQL</title>
