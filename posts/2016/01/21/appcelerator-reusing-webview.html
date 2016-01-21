@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Deleting rows with a LEFT JOIN in MySQL</title>
-  <meta name="description" content="This is something I don’t do that often, and I always forget the correct syntax. Thus this post.">
+  <title>Creating a bootable USB stick on OS X</title>
+  <meta name="description" content="Here’s a simple way to create a bootable USB stick from a downloaded .ISO file on OS X.">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://kimgrytoyr.com/posts/development/2015/08/09/deleteing-rows-with-a-left-join-in-mysql.html">
+  <link rel="canonical" href="http://kimgrytoyr.com/posts/2016/01/21/appcelerator-reusing-webview.html">
   <link rel="alternate" type="application/rss+xml" title="Kim Grytøyr" href="http://kimgrytoyr.com/feed.xml" />
   <link rel="icon" type="image/x-icon" href="/favicon.png" />
 </head>
@@ -75,31 +75,65 @@
       <div class="wrapper">
         <div class="post">
 	<header class="post-header">
-		<h1 class="post-title">Deleting rows with a LEFT JOIN in MySQL</h1>
-		<p class="post-meta">Posted 5 months and 2 weeks ago on Aug 9, 2015</p>
+		<h1 class="post-title">Creating a bootable USB stick on OS X</h1>
+		<p class="post-meta">Posted today on Jan 21, 2016</p>
 	</header>
 
 	<article class="post-content">
-		<p>This is something I don’t do that often, and I always forget the correct syntax. Thus this post.</p>
+		<p>Here’s a simple way to create a bootable USB stick from a downloaded .ISO file on OS X.</p>
 
-<p>Let’s say you have a table <strong>images</strong> and a table <strong>users</strong>. Now you want to delete all rows in table <strong>images</strong> that are associated with rows in the table <strong>users</strong> that are marked as deleted.</p>
+<h2 id="convert-iso-to-img">Convert ISO to IMG</h2>
+<p>Open the terminal and type the following command:</p>
 
-<p>First, I usually do a visual inspection of the rows that will be deleted:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">hdiutil convert -format UDRW -o target.img source.iso</code></pre></div>
 
-<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">i</span><span class="p">.</span><span class="o">*</span> <span class="k">FROM</span> <span class="n">images</span> <span class="n">i</span> <span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">users</span> <span class="n">u</span> <span class="k">ON</span> <span class="n">i</span><span class="p">.</span><span class="n">user_id</span> <span class="o">=</span> <span class="n">u</span><span class="p">.</span><span class="n">id</span> <span class="k">WHERE</span> <span class="n">u</span><span class="p">.</span><span class="n">deleted</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span></code></pre></div>
+<p>Remember to replace the paths in the previous example.</p>
 
-<p>The rows returned by this query are the rows that will be deleted when you run the following query:</p>
+<h2 id="transfer-to-usb-stick">Transfer to USB stick</h2>
 
-<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">DELETE</span> <span class="n">i</span> <span class="k">FROM</span> <span class="n">images</span> <span class="n">i</span> <span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">users</span> <span class="n">u</span> <span class="k">ON</span> <span class="n">i</span><span class="p">.</span><span class="n">user_id</span> <span class="o">=</span> <span class="n">u</span><span class="p">.</span><span class="n">id</span> <span class="k">WHERE</span> <span class="n">u</span><span class="p">.</span><span class="n">deleted</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span></code></pre></div>
+<p><strong>Warning:</strong> This will erase all data on your USB stick.</p>
 
-<p>They key part here is to specify which table you want to delete from. In this case it’s the table <code>i</code>, which is the <code>images</code> table.</p>
+<p>First, find the correct device node:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">diskutil list</code></pre></div>
+
+<p>After you have successfully identified your USB stick, unmount the disk (replace <em>N</em> with the disk number):</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">diskutil unmountDisk /dev/diskN</code></pre></div>
+
+<p>Finally, transfer the image to the USB stick (again, replace <em>N</em> with the disk number):</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo dd <span class="k">if</span><span class="o">=</span>target.img <span class="nv">of</span><span class="o">=</span>/dev/rdiskN <span class="nv">bs</span><span class="o">=</span>1m</code></pre></div>
+
+<p>After a short while, depending on the image size, your USB stick will be ready to use as a bootable media.</p>
+
+<p>Source: <a href="http://www.ubuntu.com/download/desktop/create-a-usb-stick-on-mac-osx">http://www.ubuntu.com/download/desktop/create-a-usb-stick-on-mac-osx</a></p>
 
 	</article>
 
 	<div class="divider"></div>
 
 	
+		
+	
 
+	
+		<div id="secondary" class="widget-area" role="complementary">
+		    <aside class="widget widget_related_posts">
+		        <h1 class="widget-title">Related Posts</h1>
+		        <ul class="related-posts">
+		        
+		            <li><a href="/posts/development/2015/08/09/useful-git-tips.html">Useful git tips</a> &raquo; 5 months and 2 weeks ago</li>
+		        
+		            <li><a href="/posts/email/2015/06/21/mutt-tips-and-tricks.html">mutt tips & tricks</a> &raquo; 7 months and 4 days ago</li>
+		        
+		            <li><a href="/posts/development/2015/06/14/using-launchctl-on-mac-osx-10-10.html">Using launchctl on Mac OSX 10.10 to run a script periodically</a> &raquo; 7 months and 1 week ago</li>
+		        
+		        </ul>
+		    </aside>
+		</div>
+
+		<div class="divider"></div>
 	
 
 	<h1>Discussion</h1>

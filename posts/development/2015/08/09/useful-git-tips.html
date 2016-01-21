@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Deleting rows with a LEFT JOIN in MySQL</title>
-  <meta name="description" content="This is something I don’t do that often, and I always forget the correct syntax. Thus this post.">
+  <title>Useful git tips</title>
+  <meta name="description" content="This is a collection of useful git commands, aliases, tips and tricks that I’ve come across or been using. Feel free to contribute to this collection by addi...">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://kimgrytoyr.com/posts/development/2015/08/09/deleteing-rows-with-a-left-join-in-mysql.html">
+  <link rel="canonical" href="http://kimgrytoyr.com/posts/development/2015/08/09/useful-git-tips.html">
   <link rel="alternate" type="application/rss+xml" title="Kim Grytøyr" href="http://kimgrytoyr.com/feed.xml" />
   <link rel="icon" type="image/x-icon" href="/favicon.png" />
 </head>
@@ -75,31 +75,51 @@
       <div class="wrapper">
         <div class="post">
 	<header class="post-header">
-		<h1 class="post-title">Deleting rows with a LEFT JOIN in MySQL</h1>
+		<h1 class="post-title">Useful git tips</h1>
 		<p class="post-meta">Posted 5 months and 2 weeks ago on Aug 9, 2015</p>
 	</header>
 
 	<article class="post-content">
-		<p>This is something I don’t do that often, and I always forget the correct syntax. Thus this post.</p>
+		<p>This is a collection of useful git commands, aliases, tips and tricks that I’ve come across or been using. Feel free to contribute to this collection by adding a comment below.</p>
 
-<p>Let’s say you have a table <strong>images</strong> and a table <strong>users</strong>. Now you want to delete all rows in table <strong>images</strong> that are associated with rows in the table <strong>users</strong> that are marked as deleted.</p>
+<h2 id="aliases-for-ignoring-files">Aliases for ignoring files</h2>
+<p>To prevent changes in already-commited files from being commited, you can update your index with the <code>--assume-unchaged</code> flag for the files that you don’t want to commit. Here are a couple of useful aliases for dealing with this.</p>
 
-<p>First, I usually do a visual inspection of the rows that will be deleted:</p>
+<div class="highlight"><pre><code class="language-ini" data-lang="ini"><span class="na">ignore</span> <span class="o">=</span> <span class="s">!git update-index --assume-unchanged</span>
+<span class="na">unignore</span> <span class="o">=</span> <span class="s">!git update-index --no-assume-unchanged</span>
+<span class="na">ignored</span> <span class="o">=</span> <span class="s">!git ls-files -v | grep ^[a-z]</span></code></pre></div>
 
-<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">i</span><span class="p">.</span><span class="o">*</span> <span class="k">FROM</span> <span class="n">images</span> <span class="n">i</span> <span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">users</span> <span class="n">u</span> <span class="k">ON</span> <span class="n">i</span><span class="p">.</span><span class="n">user_id</span> <span class="o">=</span> <span class="n">u</span><span class="p">.</span><span class="n">id</span> <span class="k">WHERE</span> <span class="n">u</span><span class="p">.</span><span class="n">deleted</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span></code></pre></div>
+<p>With these aliases you can use <code>git ignore &lt;file&gt;</code> to ignore a file, <code>git unignore &lt;file&gt;</code> to unignore a file, and <code>git ignored</code> to list files that are currently being ignored.</p>
 
-<p>The rows returned by this query are the rows that will be deleted when you run the following query:</p>
+<p><strong>Warning:</strong> Adding a file directly with <code>git add &lt;file&gt;</code> will add the file regardless of this flag.</p>
 
-<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">DELETE</span> <span class="n">i</span> <span class="k">FROM</span> <span class="n">images</span> <span class="n">i</span> <span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">users</span> <span class="n">u</span> <span class="k">ON</span> <span class="n">i</span><span class="p">.</span><span class="n">user_id</span> <span class="o">=</span> <span class="n">u</span><span class="p">.</span><span class="n">id</span> <span class="k">WHERE</span> <span class="n">u</span><span class="p">.</span><span class="n">deleted</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span></code></pre></div>
-
-<p>They key part here is to specify which table you want to delete from. In this case it’s the table <code>i</code>, which is the <code>images</code> table.</p>
+<p>Source: <a href="http://gitready.com/intermediate/2009/02/18/temporarily-ignoring-files.html">http://gitready.com/intermediate/2009/02/18/temporarily-ignoring-files.html</a> (comments)</p>
 
 	</article>
 
 	<div class="divider"></div>
 
 	
+		
+	
 
+	
+		<div id="secondary" class="widget-area" role="complementary">
+		    <aside class="widget widget_related_posts">
+		        <h1 class="widget-title">Related Posts</h1>
+		        <ul class="related-posts">
+		        
+		            <li><a href="/posts/2016/01/21/appcelerator-reusing-webview.html">Creating a bootable USB stick on OS X</a> &raquo; today</li>
+		        
+		            <li><a href="/posts/development/2015/08/09/basic-usage-of-git-svn.html">Basic usage of git-svn</a> &raquo; 5 months and 2 weeks ago</li>
+		        
+		            <li><a href="/posts/email/2015/06/21/mutt-tips-and-tricks.html">mutt tips & tricks</a> &raquo; 7 months and 4 days ago</li>
+		        
+		        </ul>
+		    </aside>
+		</div>
+
+		<div class="divider"></div>
 	
 
 	<h1>Discussion</h1>

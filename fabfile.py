@@ -2,7 +2,6 @@ from fabric.api import *
 import os
 import fabric.contrib.project as project
 
-DEST_PATH = '/home/sjl/webapps/slc/'
 ROOT_PATH = os.path.abspath(os.path.dirname(__file__))
 SITE_PATH = os.path.join(ROOT_PATH, '_site')
 

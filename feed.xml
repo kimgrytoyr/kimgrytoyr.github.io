@@ -6,9 +6,89 @@
 </description>
     <link>http://kimgrytoyr.com/</link>
     <atom:link href="http://kimgrytoyr.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 09 Aug 2015 15:38:10 +0200</pubDate>
-    <lastBuildDate>Sun, 09 Aug 2015 15:38:10 +0200</lastBuildDate>
+    <pubDate>Thu, 21 Jan 2016 10:53:41 +0100</pubDate>
+    <lastBuildDate>Thu, 21 Jan 2016 10:53:41 +0100</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>Creating a bootable USB stick on OS X</title>
+        <description>&lt;p&gt;Here’s a simple way to create a bootable USB stick from a downloaded .ISO file on OS X.&lt;/p&gt;
+
+&lt;h2 id=&quot;convert-iso-to-img&quot;&gt;Convert ISO to IMG&lt;/h2&gt;
+&lt;p&gt;Open the terminal and type the following command:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;hdiutil convert -format UDRW -o target.img source.iso&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Remember to replace the paths in the previous example.&lt;/p&gt;
+
+&lt;h2 id=&quot;transfer-to-usb-stick&quot;&gt;Transfer to USB stick&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Warning:&lt;/strong&gt; This will erase all data on your USB stick.&lt;/p&gt;
+
+&lt;p&gt;First, find the correct device node:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;diskutil list&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;After you have successfully identified your USB stick, unmount the disk (replace &lt;em&gt;N&lt;/em&gt; with the disk number):&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;diskutil unmountDisk /dev/diskN&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Finally, transfer the image to the USB stick (again, replace &lt;em&gt;N&lt;/em&gt; with the disk number):&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sudo dd &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;target.img &lt;span class=&quot;nv&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/dev/rdiskN &lt;span class=&quot;nv&quot;&gt;bs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1m&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;After a short while, depending on the image size, your USB stick will be ready to use as a bootable media.&lt;/p&gt;
+
+&lt;p&gt;Source: &lt;a href=&quot;http://www.ubuntu.com/download/desktop/create-a-usb-stick-on-mac-osx&quot;&gt;http://www.ubuntu.com/download/desktop/create-a-usb-stick-on-mac-osx&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Thu, 21 Jan 2016 11:40:00 +0100</pubDate>
+        <link>http://kimgrytoyr.com/posts/2016/01/21/appcelerator-reusing-webview.html</link>
+        <guid isPermaLink="true">http://kimgrytoyr.com/posts/2016/01/21/appcelerator-reusing-webview.html</guid>
+        
+        <category>usb</category>
+        
+        <category>boot</category>
+        
+        <category>mac</category>
+        
+        <category>tips</category>
+        
+        
+        <category>posts</category>
+        
+      </item>
+    
+      <item>
+        <title>Useful git tips</title>
+        <description>&lt;p&gt;This is a collection of useful git commands, aliases, tips and tricks that I’ve come across or been using. Feel free to contribute to this collection by adding a comment below.&lt;/p&gt;
+
+&lt;h2 id=&quot;aliases-for-ignoring-files&quot;&gt;Aliases for ignoring files&lt;/h2&gt;
+&lt;p&gt;To prevent changes in already-commited files from being commited, you can update your index with the &lt;code&gt;--assume-unchaged&lt;/code&gt; flag for the files that you don’t want to commit. Here are a couple of useful aliases for dealing with this.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ini&quot; data-lang=&quot;ini&quot;&gt;&lt;span class=&quot;na&quot;&gt;ignore&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;!git update-index --assume-unchanged&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;unignore&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;!git update-index --no-assume-unchanged&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;ignored&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;!git ls-files -v | grep ^[a-z]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;With these aliases you can use &lt;code&gt;git ignore &amp;lt;file&amp;gt;&lt;/code&gt; to ignore a file, &lt;code&gt;git unignore &amp;lt;file&amp;gt;&lt;/code&gt; to unignore a file, and &lt;code&gt;git ignored&lt;/code&gt; to list files that are currently being ignored.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Warning:&lt;/strong&gt; Adding a file directly with &lt;code&gt;git add &amp;lt;file&amp;gt;&lt;/code&gt; will add the file regardless of this flag.&lt;/p&gt;
+
+&lt;p&gt;Source: &lt;a href=&quot;http://gitready.com/intermediate/2009/02/18/temporarily-ignoring-files.html&quot;&gt;http://gitready.com/intermediate/2009/02/18/temporarily-ignoring-files.html&lt;/a&gt; (comments)&lt;/p&gt;
+</description>
+        <pubDate>Sun, 09 Aug 2015 19:03:00 +0200</pubDate>
+        <link>http://kimgrytoyr.com/posts/development/2015/08/09/useful-git-tips.html</link>
+        <guid isPermaLink="true">http://kimgrytoyr.com/posts/development/2015/08/09/useful-git-tips.html</guid>
+        
+        <category>git</category>
+        
+        <category>tips</category>
+        
+        
+        <category>posts</category>
+        
+        <category>development</category>
+        
+      </item>
     
       <item>
         <title>Basic usage of git-svn</title>
