@@ -12,10 +12,10 @@ class FabricException(Exception):
 def status():
     local('cd ' + SITE_PATH + ' && git status')    
 
-def publish():
+def publish(message='fab publish'):
     with settings(abort_exception = FabricException):
         try:
             local('jekyll build')
-            local('cd ' + SITE_PATH + ' && git add . && git commit -m "fab publish" && git push origin master')
+            local('cd ' + SITE_PATH + ' && git add . && git commit -m "%s" && git push origin master' % (message))
         except FabricException:
             print "Something wrong happened"
