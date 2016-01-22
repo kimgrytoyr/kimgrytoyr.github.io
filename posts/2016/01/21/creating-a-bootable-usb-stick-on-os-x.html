@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Opening Sublime Text from the command line</title>
-  <meta name="description" content="I’m using Sublime Text 3 beta as my text editor. It’s fast and lightweight, but at the same time it’s very powerful.">
+  <title>Creating a bootable USB stick on OS X</title>
+  <meta name="description" content="Here’s a simple way to create a bootable USB stick from a downloaded .ISO file on OS X.">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://kimgrytoyr.com/posts/development/2014/09/03/opening-sublime-text-from-the-command-line.html">
+  <link rel="canonical" href="http://kimgrytoyr.com/posts/2016/01/21/creating-a-bootable-usb-stick-on-os-x.html">
   <link rel="alternate" type="application/rss+xml" title="Kim Grytøyr" href="http://kimgrytoyr.com/feed.xml" />
   <link rel="icon" type="image/x-icon" href="/favicon.png" />
 </head>
@@ -75,33 +75,39 @@
       <div class="wrapper">
         <div class="post">
 	<header class="post-header">
-		<h1 class="post-title">Opening Sublime Text from the command line</h1>
-		<p class="post-meta">Posted on Sep 3, 2014</p>
+		<h1 class="post-title">Creating a bootable USB stick on OS X</h1>
+		<p class="post-meta">Posted on Jan 21, 2016</p>
 	</header>
 
 	<article class="post-content">
-		<p>I’m using <a href="http://www.sublimetext.com/3">Sublime Text 3 beta</a> as my text editor. It’s fast and lightweight, but at the same time it’s very powerful.</p>
+		<p>Here’s a simple way to create a bootable USB stick from a downloaded .ISO file on OS X.</p>
 
-<p>Here’s how you can open Sublime Text from the command line:</p>
+<h2 id="convert-iso-to-img">Convert ISO to IMG</h2>
+<p>Open the terminal and type the following command:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">ln -s /Applications/Sublime<span class="se">\ </span>Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/subl</code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">hdiutil convert -format UDRW -o target.img source.iso</code></pre></div>
 
-<p>(if you’re using Sublime Text 2, just replace the path in the first argument)</p>
+<p>Remember to replace the paths in the previous example.</p>
 
-<p>If you would rather like to use another name for the command that opens Sublime Text, just change the last part (<code>subl</code>) of this command to whatever you want.</p>
+<h2 id="transfer-to-usb-stick">Transfer to USB stick</h2>
 
-<p>For this to work you must have <code>/usr/local/bin</code> in your $PATH environment variable. To check if it’s already there, type this into your command line:</p>
+<p><strong>Warning:</strong> This will erase all data on your USB stick.</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="nv">$PATH</span> <span class="p">|</span> grep -q <span class="s2">&quot;/usr/local/bin&quot;</span></code></pre></div>
+<p>First, find the correct device node:</p>
 
-<p>If nothing is returned, you must add <code>/usr/local/bin</code> to $PATH. I’m not going to cover how you do this, because there are probably hundreds of other sites that does.</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">diskutil list</code></pre></div>
 
-<p>When everything is set up, you can type any of the following in your terminal:</p>
+<p>After you have successfully identified your USB stick, unmount the disk (replace <em>N</em> with the disk number):</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">subl &lt;filename&gt; <span class="c"># Opens a file</span>
-subl &lt;foldername&gt; <span class="c"># Opens a folder</span>
-subl . <span class="c"># Opens the current folder</span></code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">diskutil unmountDisk /dev/diskN</code></pre></div>
 
+<p>Finally, transfer the image to the USB stick (again, replace <em>N</em> with the disk number):</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo dd <span class="k">if</span><span class="o">=</span>target.img <span class="nv">of</span><span class="o">=</span>/dev/rdiskN <span class="nv">bs</span><span class="o">=</span>1m</code></pre></div>
+
+<p>After a short while, depending on the image size, your USB stick will be ready to use as a bootable media.</p>
+
+<p>Source: <a href="http://www.ubuntu.com/download/desktop/create-a-usb-stick-on-mac-osx">http://www.ubuntu.com/download/desktop/create-a-usb-stick-on-mac-osx</a></p>
 
 	</article>
 
@@ -117,11 +123,11 @@ subl . <span class="c"># Opens the current folder</span></code></pre></div>
 		        <h1 class="widget-title">Related Posts</h1>
 		        <ul class="related-posts">
 		        
-		            <li><a href="/posts/2016/01/21/creating-a-bootable-usb-stick-on-os-x.html">Creating a bootable USB stick on OS X</a> &raquo; yesterday</li>
+		            <li><a href="/posts/linux/2016/01/21/trouble-booting-newer-linux-kernels-on-asus-vivopc-vm42.html">Trouble booting newer Linux kernels on Asus VivoPC VM42</a> &raquo; yesterday</li>
 		        
-		            <li><a href="/posts/development/2015/06/14/using-launchctl-on-mac-osx-10-10.html">Using launchctl on Mac OSX 10.10 to run a script periodically</a> &raquo; 7 months and 1 week ago</li>
+		            <li><a href="/posts/development/2015/08/09/useful-git-tips.html">Useful git tips</a> &raquo; 5 months and 2 weeks ago</li>
 		        
-		            <li><a href="/posts/development/2014/07/09/case-sensitivty-problem-with-git-in-os-x.html">Case-sensitivity problem with Git in OS X</a> &raquo; 1 year and 6 months ago</li>
+		            <li><a href="/posts/email/2015/06/21/mutt-tips-and-tricks.html">mutt tips & tricks</a> &raquo; 7 months and 5 days ago</li>
 		        
 		        </ul>
 		    </aside>

@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Opening Sublime Text from the command line</title>
-  <meta name="description" content="I’m using Sublime Text 3 beta as my text editor. It’s fast and lightweight, but at the same time it’s very powerful.">
+  <title>Trouble booting newer Linux kernels on Asus VivoPC VM42</title>
+  <meta name="description" content="I recently bought an Asus VivoPC VM42because I wanted a small and simple desktop computer to play around with differentLinux distros. I was able to install U...">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://kimgrytoyr.com/posts/development/2014/09/03/opening-sublime-text-from-the-command-line.html">
+  <link rel="canonical" href="http://kimgrytoyr.com/posts/linux/2016/01/21/trouble-booting-newer-linux-kernels-on-asus-vivopc-vm42.html">
   <link rel="alternate" type="application/rss+xml" title="Kim Grytøyr" href="http://kimgrytoyr.com/feed.xml" />
   <link rel="icon" type="image/x-icon" href="/favicon.png" />
 </head>
@@ -75,33 +75,42 @@
       <div class="wrapper">
         <div class="post">
 	<header class="post-header">
-		<h1 class="post-title">Opening Sublime Text from the command line</h1>
-		<p class="post-meta">Posted on Sep 3, 2014</p>
+		<h1 class="post-title">Trouble booting newer Linux kernels on Asus VivoPC VM42</h1>
+		<p class="post-meta">Posted on Jan 21, 2016</p>
 	</header>
 
 	<article class="post-content">
-		<p>I’m using <a href="http://www.sublimetext.com/3">Sublime Text 3 beta</a> as my text editor. It’s fast and lightweight, but at the same time it’s very powerful.</p>
+		<p>I recently bought an <a href="https://www.asus.com/Mini-PCs/VivoPC_VM42/">Asus VivoPC VM42</a>
+because I wanted a small and simple desktop computer to play around with different
+Linux distros. I was able to install Ubuntu 14.04 without problems, but when booting
+it for the first time it got stuck with a message from NMI Watchdog saying that
+CPU#1 had been stuck for 22 seconds.</p>
 
-<p>Here’s how you can open Sublime Text from the command line:</p>
+<p>I also tried booting Linux Mint and Fedora from a Live USB, but the same thing
+happened.</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">ln -s /Applications/Sublime<span class="se">\ </span>Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/subl</code></pre></div>
+<p>The only thing that was working was booting Ubuntu with kernel 3.19.0-25.</p>
 
-<p>(if you’re using Sublime Text 2, just replace the path in the first argument)</p>
+<p>I tried the following things:</p>
 
-<p>If you would rather like to use another name for the command that opens Sublime Text, just change the last part (<code>subl</code>) of this command to whatever you want.</p>
+<ol>
+  <li>Booting with <code>nomodeset</code></li>
+  <li>Booting with <code>noacpi</code></li>
+  <li>Updating the BIOS from version 1008 to 1203</li>
+  <li>Using legacy BIOS instead of UEFI</li>
+  <li>Disabling Secure Boot and Fast Boot</li>
+</ol>
 
-<p>For this to work you must have <code>/usr/local/bin</code> in your $PATH environment variable. To check if it’s already there, type this into your command line:</p>
+<p>Finally, after several days of searching for a solution, I tried disabling all
+the on-board controllers: HD Audio, WLAN and bluetooth.</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="nv">$PATH</span> <span class="p">|</span> grep -q <span class="s2">&quot;/usr/local/bin&quot;</span></code></pre></div>
+<p>Now I can boot Ubuntu with kernel 4.3.0.1, Linux Mint and Fedora from the Live
+USBs. I have yet to figure out which one was causing the problem, but I will update this post whenever I find out.</p>
 
-<p>If nothing is returned, you must add <code>/usr/local/bin</code> to $PATH. I’m not going to cover how you do this, because there are probably hundreds of other sites that does.</p>
+<p>I should of course have tried this at an earlier stage, but since the older version
+of the kernel was working, I figured it couldn’t be because of those BIOS settings.</p>
 
-<p>When everything is set up, you can type any of the following in your terminal:</p>
-
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">subl &lt;filename&gt; <span class="c"># Opens a file</span>
-subl &lt;foldername&gt; <span class="c"># Opens a folder</span>
-subl . <span class="c"># Opens the current folder</span></code></pre></div>
-
+<p>I was wrong.</p>
 
 	</article>
 
@@ -118,10 +127,6 @@ subl . <span class="c"># Opens the current folder</span></code></pre></div>
 		        <ul class="related-posts">
 		        
 		            <li><a href="/posts/2016/01/21/creating-a-bootable-usb-stick-on-os-x.html">Creating a bootable USB stick on OS X</a> &raquo; yesterday</li>
-		        
-		            <li><a href="/posts/development/2015/06/14/using-launchctl-on-mac-osx-10-10.html">Using launchctl on Mac OSX 10.10 to run a script periodically</a> &raquo; 7 months and 1 week ago</li>
-		        
-		            <li><a href="/posts/development/2014/07/09/case-sensitivty-problem-with-git-in-os-x.html">Case-sensitivity problem with Git in OS X</a> &raquo; 1 year and 6 months ago</li>
 		        
 		        </ul>
 		    </aside>
