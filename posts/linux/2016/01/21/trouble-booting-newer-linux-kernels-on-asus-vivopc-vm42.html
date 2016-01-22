@@ -91,7 +91,7 @@ happened.</p>
 
 <p>The only thing that was working was booting Ubuntu with kernel 3.19.0-25.</p>
 
-<p>I tried the following things:</p>
+<p>I tried the following:</p>
 
 <ol>
   <li>Booting with <code>nomodeset</code></li>
@@ -99,13 +99,19 @@ happened.</p>
   <li>Updating the BIOS from version 1008 to 1203</li>
   <li>Using legacy BIOS instead of UEFI</li>
   <li>Disabling Secure Boot and Fast Boot</li>
+  <li>A bunch of other things</li>
 </ol>
 
 <p>Finally, after several days of searching for a solution, I tried disabling all
-the on-board controllers: HD Audio, WLAN and bluetooth.</p>
+the on-board controllers:</p>
 
-<p>Now I can boot Ubuntu with kernel 4.3.0.1, Linux Mint and Fedora from the Live
-USBs. I have yet to figure out which one was causing the problem, but I will update this post whenever I find out.</p>
+<ul>
+  <li>HD Audio</li>
+  <li>WLAN</li>
+  <li>Bluetooth</li>
+</ul>
+
+<p>Now I could boot everything, including newer kernels, Linux Mint and Fedora. I have yet to figure out which one was causing the problem, but I will update this post whenever I find out.</p>
 
 <p>I should of course have tried this at an earlier stage, but since the older version
 of the kernel was working, I figured it couldn’t be because of those BIOS settings.</p>
