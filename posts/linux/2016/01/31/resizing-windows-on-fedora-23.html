@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Using launchctl on Mac OSX 10.10 to run a script periodically</title>
-  <meta name="description" content="Lately I’ve been playing around with mutt, a “small butpowerful text-based email client for Unix operating systems” andofflineimap, a software that downloads...">
+  <title>Resizing windows on Fedora 23</title>
+  <meta name="description" content="Here’s an easy way to resize windows on Fedora 23 and probably most other Linux distributions:">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://kimgrytoyr.com/posts/development/2015/06/14/using-launchctl-on-mac-osx-10-10.html">
+  <link rel="canonical" href="http://kimgrytoyr.com/posts/linux/2016/01/31/resizing-windows-on-fedora-23.html">
   <link rel="alternate" type="application/rss+xml" title="Kim Grytøyr" href="http://kimgrytoyr.com/feed.xml" />
   <link rel="icon" type="image/x-icon" href="/favicon.png" />
 </head>
@@ -75,46 +75,19 @@
       <div class="wrapper">
         <div class="post">
 	<header class="post-header">
-		<h1 class="post-title">Using launchctl on Mac OSX 10.10 to run a script periodically</h1>
-		<p class="post-meta">Posted on Jun 14, 2015</p>
+		<h1 class="post-title">Resizing windows on Fedora 23</h1>
+		<p class="post-meta">Posted on Jan 31, 2016</p>
 	</header>
 
 	<article class="post-content">
-		<p>Lately I’ve been playing around with <a href="http://www.mutt.org/">mutt</a>, a <em>“small but
-powerful text-based email client for Unix operating systems”</em> and
-<a href="http://offlineimap.org/">offlineimap</a>, a software that downloads your mailbox
-as a local Maildir.</p>
+		<p>Here’s an easy way to resize windows on Fedora 23 and probably most other Linux distributions:</p>
 
-<p>After I finally got everything set up (easier said than done), I needed a way to
-make offlineimap synchronize my mailbox periodically. Apple recommends using <strong>launchctl</strong>
-instead of crontab. The following example shows how to run <strong>offlineimap</strong> in quiet mode every two minutes:</p>
+<ol>
+  <li>Hold ALT and right click (and hold) with your mouse</li>
+  <li>Move the mouse to resize</li>
+</ol>
 
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
-<span class="cp">&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</span>
-<span class="nt">&lt;plist</span> <span class="na">version=</span><span class="s">"1.0"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;dict&gt;</span>
-  <span class="nt">&lt;key&gt;</span>Label<span class="nt">&lt;/key&gt;</span>
-  <span class="nt">&lt;string&gt;</span>com.kimgrytoyr.offlineimap.plist<span class="nt">&lt;/string&gt;</span>
-  <span class="nt">&lt;key&gt;</span>ProgramArguments<span class="nt">&lt;/key&gt;</span>
-  <span class="nt">&lt;array&gt;</span>
-    <span class="nt">&lt;string&gt;</span>/usr/local/bin/offlineimap<span class="nt">&lt;/string&gt;</span>
-    <span class="nt">&lt;string&gt;</span>-u<span class="nt">&lt;/string&gt;</span>
-    <span class="nt">&lt;string&gt;</span>quiet<span class="nt">&lt;/string&gt;</span>
-  <span class="nt">&lt;/array&gt;</span>
-  <span class="nt">&lt;key&gt;</span>StartInterval<span class="nt">&lt;/key&gt;</span>
-  <span class="nt">&lt;integer&gt;</span>120<span class="nt">&lt;/integer&gt;</span>
-<span class="nt">&lt;/dict&gt;</span>
-<span class="nt">&lt;/plist&gt;</span></code></pre></figure>
-
-<p>This file is basically an XML file, but the extension you must use is <code class="highlighter-rouge">.plist</code>. You would typically call it something like <em>com.yourname.scriptname.plist</em>. Place it in the folder <code class="highlighter-rouge">~/Library/LaunchAgents/</code>, and make sure you replace <em>yourname</em> and <em>scriptname</em> with something relevant.</p>
-
-<p>When you’ve saved the file to the specified location, type the following to load it into launchctl:</p>
-
-<p><code class="highlighter-rouge">launchctl load ~/Library/LaunchAgents/com.yourname.scriptname.plist</code></p>
-
-<p>If you ever need to remove it from launchctl, you can type the following:</p>
-
-<p><code class="highlighter-rouge">launchctl remove ~/Library/LaunchAgents/com.yourname.scriptname.plist</code></p>
+<p>Using this method the window will resize as if you hovered your mouse over the nearest corner and resized it manually.</p>
 
 	</article>
 
@@ -128,11 +101,11 @@ instead of crontab. The following example shows how to run <strong>offlineimap</
 		        <h1 class="widget-title">Related Posts</h1>
 		        <ul class="related-posts">
 		        
-		            <li><a href="/posts/development/2015/08/09/useful-git-tips.html">Useful git tips</a> &raquo; Aug 9, 2015</li>
-		        
-		            <li><a href="/posts/2016/01/21/creating-a-bootable-usb-stick-on-os-x.html">Creating a bootable USB stick on OS X</a> &raquo; Jan 21, 2016</li>
+		            <li><a href="/projects/2015/06/14/locationpicker.js.html">locationpicker.js</a> &raquo; Jun 14, 2015</li>
 		        
 		            <li><a href="/posts/development/2014/09/03/opening-sublime-text-from-the-command-line.html">Opening Sublime Text from the command line</a> &raquo; Sep 3, 2014</li>
+		        
+		            <li><a href="/posts/development/2014/07/09/case-sensitivty-problem-with-git-in-os-x.html">Case-sensitivity problem with Git in OS X</a> &raquo; Jul 9, 2014</li>
 		        
 		        </ul>
 		    </aside>

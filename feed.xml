@@ -6,9 +6,35 @@
 </description>
     <link>http://kimgrytoyr.com/</link>
     <atom:link href="http://kimgrytoyr.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 31 Jan 2016 16:03:47 +0100</pubDate>
-    <lastBuildDate>Sun, 31 Jan 2016 16:03:47 +0100</lastBuildDate>
+    <pubDate>Sun, 31 Jan 2016 18:57:49 +0100</pubDate>
+    <lastBuildDate>Sun, 31 Jan 2016 18:57:49 +0100</lastBuildDate>
     <generator>Jekyll v3.1.1</generator>
+    
+      <item>
+        <title>Resizing windows on Fedora 23</title>
+        <description>&lt;p&gt;Here’s an easy way to resize windows on Fedora 23 and probably most other Linux distributions:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Hold ALT and right click (and hold) with your mouse&lt;/li&gt;
+  &lt;li&gt;Move the mouse to resize&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Using this method the window will resize as if you hovered your mouse over the nearest corner and resized it manually.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 31 Jan 2016 00:00:00 +0100</pubDate>
+        <link>http://kimgrytoyr.com/posts/linux/2016/01/31/resizing-windows-on-fedora-23.html</link>
+        <guid isPermaLink="true">http://kimgrytoyr.com/posts/linux/2016/01/31/resizing-windows-on-fedora-23.html</guid>
+        
+        <category>fedora</category>
+        
+        <category>linux</category>
+        
+        
+        <category>posts</category>
+        
+        <category>linux</category>
+        
+      </item>
     
       <item>
         <title>Trouble booting newer Linux kernels on Asus VivoPC VM42</title>
@@ -598,67 +624,6 @@ subl . &lt;span class=&quot;c&quot;&gt;# Opens the current folder&lt;/span&gt;&l
         <category>command lin</category>
         
         <category>quick tip</category>
-        
-        
-        <category>posts</category>
-        
-        <category>development</category>
-        
-      </item>
-    
-      <item>
-        <title>Case-sensitivity problem with Git in OS X</title>
-        <description>&lt;p&gt;I’ve several times experienced problems with files and folders having incorrect case in Git repositories in OS X, so I decided to gather some possible fixes and solutions to this problem. If you have any suggestions or comments, please consider sharing it with me in a comment.&lt;/p&gt;
-
-&lt;h2 id=&quot;hacks&quot;&gt;Hacks&lt;/h2&gt;
-
-&lt;p&gt;First off, here’s a solution published at &lt;a href=&quot;https://coderwall.com/p/mgi8ja&quot;&gt;Coderwall.com&lt;/a&gt;:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;git mv filename filename_tmp
-git mv filename_tmp Filename
-git commit -m &lt;span class=&quot;s2&quot;&gt;&quot;Set correct case for filename&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;The author mentions that this is a hack and that it could possibly mess up other users’ repositories, and that a &lt;code class=&quot;highlighter-rouge&quot;&gt;git pull&lt;/code&gt; by other users won’t include this change.&lt;/p&gt;
-
-&lt;p&gt;In a comment to that article, a user suggests the following approach instead:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;git mv --force filename Filename
-git commit -m &lt;span class=&quot;s2&quot;&gt;&quot;Set correct case for filename&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;According to the comment, a &lt;code class=&quot;highlighter-rouge&quot;&gt;git pull&lt;/code&gt; would now rename the file for other OS X users as well.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;a-permanent-fix&quot;&gt;A permanent fix&lt;/h2&gt;
-
-&lt;p&gt;As mentioned in both the article at &lt;a href=&quot;https://coderwall.com/p/mgi8ja&quot;&gt;Coderwall.com&lt;/a&gt;, and by several users in this &lt;a href=&quot;http://stackoverflow.com/questions/8904327/case-sensitivity-in-git&quot;&gt;Stackexchange post&lt;/a&gt;, OS X’s filesystem uses a &lt;em&gt;case-preserving&lt;/em&gt; format, not a &lt;em&gt;case-sensitive&lt;/em&gt; format. There are ways to get around this when working with a repository, though. Both articles suggests creating a &lt;strong&gt;disk image&lt;/strong&gt; with a &lt;em&gt;case-sensitive&lt;/em&gt; format, more specifically the &lt;strong&gt;Mac OS Extended (Case-sensitive, Journaled)&lt;/strong&gt; format.&lt;/p&gt;
-
-&lt;p&gt;Here’s a slightly rewritten version of the step-by-step list found in the article at &lt;a href=&quot;https://coderwall.com/p/mgi8ja&quot;&gt;Coderwall.com&lt;/a&gt;, explaining how to create such a disk image:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Launch Disk Utility&lt;/li&gt;
-  &lt;li&gt;Choose “New Image”&lt;/li&gt;
-  &lt;li&gt;Enter a name for your volume, e.g “Workspace”&lt;/li&gt;
-  &lt;li&gt;Set the size to something that will most likely fit your needs&lt;/li&gt;
-  &lt;li&gt;Select &lt;strong&gt;Mac OS Extended (Case-sensitive, Journaled)&lt;/strong&gt; in “Format”.&lt;/li&gt;
-  &lt;li&gt;Select “Single Partition - Apple Partition Map” in “Partitions”&lt;/li&gt;
-  &lt;li&gt;Ensure “Sparse bundle disk image” is set in “Image Format”.&lt;/li&gt;
-  &lt;li&gt;Save it somewhere on your hard drive&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;The final step is to move any Git repositories to this new disk image. Any problems you’ve had with case-sensitivity will now be history.&lt;/p&gt;
-</description>
-        <pubDate>Wed, 09 Jul 2014 04:18:36 +0200</pubDate>
-        <link>http://kimgrytoyr.com/posts/development/2014/07/09/case-sensitivty-problem-with-git-in-os-x.html</link>
-        <guid isPermaLink="true">http://kimgrytoyr.com/posts/development/2014/07/09/case-sensitivty-problem-with-git-in-os-x.html</guid>
-        
-        <category>git</category>
-        
-        <category>mac</category>
-        
-        <category>case-sensitivity</category>
-        
-        <category>disk image</category>
         
         
         <category>posts</category>
