@@ -83,15 +83,15 @@
 		<p>This is a collection of useful git commands, aliases, tips and tricks that I’ve come across or been using. Feel free to contribute to this collection by adding a comment below.</p>
 
 <h2 id="aliases-for-ignoring-files">Aliases for ignoring files</h2>
-<p>To prevent changes in already-commited files from being commited, you can update your index with the <code>--assume-unchaged</code> flag for the files that you don’t want to commit. Here are a couple of useful aliases for dealing with this.</p>
+<p>To prevent changes in already-commited files from being commited, you can update your index with the <code class="highlighter-rouge">--assume-unchaged</code> flag for the files that you don’t want to commit. Here are a couple of useful aliases for dealing with this.</p>
 
-<div class="highlight"><pre><code class="language-ini" data-lang="ini"><span class="na">ignore</span> <span class="o">=</span> <span class="s">!git update-index --assume-unchanged</span>
-<span class="na">unignore</span> <span class="o">=</span> <span class="s">!git update-index --no-assume-unchanged</span>
-<span class="na">ignored</span> <span class="o">=</span> <span class="s">!git ls-files -v | grep ^[a-z]</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-ini" data-lang="ini"><span class="py">ignore</span> <span class="p">=</span> <span class="s">!git update-index --assume-unchanged</span>
+<span class="py">unignore</span> <span class="p">=</span> <span class="s">!git update-index --no-assume-unchanged</span>
+<span class="py">ignored</span> <span class="p">=</span> <span class="s">!git ls-files -v | grep ^[a-z]</span></code></pre></figure>
 
-<p>With these aliases you can use <code>git ignore &lt;file&gt;</code> to ignore a file, <code>git unignore &lt;file&gt;</code> to unignore a file, and <code>git ignored</code> to list files that are currently being ignored.</p>
+<p>With these aliases you can use <code class="highlighter-rouge">git ignore &lt;file&gt;</code> to ignore a file, <code class="highlighter-rouge">git unignore &lt;file&gt;</code> to unignore a file, and <code class="highlighter-rouge">git ignored</code> to list files that are currently being ignored.</p>
 
-<p><strong>Warning:</strong> Adding a file directly with <code>git add &lt;file&gt;</code> will add the file regardless of this flag.</p>
+<p><strong>Warning:</strong> Adding a file directly with <code class="highlighter-rouge">git add &lt;file&gt;</code> will add the file regardless of this flag.</p>
 
 <p>Source: <a href="http://gitready.com/intermediate/2009/02/18/temporarily-ignoring-files.html">http://gitready.com/intermediate/2009/02/18/temporarily-ignoring-files.html</a> (comments)</p>
 
@@ -100,8 +100,6 @@
 	<div class="divider"></div>
 
 	
-		
-	
 
 	
 		<div id="secondary" class="widget-area" role="complementary">
@@ -109,7 +107,7 @@
 		        <h1 class="widget-title">Related Posts</h1>
 		        <ul class="related-posts">
 		        
-		            <li><a href="/posts/2016/01/21/creating-a-bootable-usb-stick-on-os-x.html">Creating a bootable USB stick on OS X</a> &raquo; Jan 21, 2016</li>
+		            <li><a href="/posts/2014/07/09/going-static.html">Going static</a> &raquo; Jul 9, 2014</li>
 		        
 		            <li><a href="/posts/development/2015/08/09/basic-usage-of-git-svn.html">Basic usage of git-svn</a> &raquo; Aug 9, 2015</li>
 		        
