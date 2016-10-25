@@ -1,0 +1,549 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>ChessBoard Plugin</title>
+  <meta name="description" content="Demo of the Chessboard Plugin">
+  <meta name="author" content="Kim Grytøyr">
+
+  <link rel="stylesheet" href="css/chessboard-0.3.0.min.css">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <style>
+  html, body {
+  	font-family: Arial;
+  }
+
+  #board {
+  	width: 400px;
+  }
+
+  #left {
+  	width: 400px;
+  	float: left;
+  }
+
+  #right {
+  	margin-left: 20px;
+  	margin-right: 20px;
+  	width: 400px;
+  	height: 400px;
+  	float: left;
+  	overflow: scroll;
+  }
+
+  #previousMoveLinkContainer {
+  	width: 190px;
+  	float: left;
+  	text-align: center;
+  }
+
+  #nextMoveLinkContainer {
+  	width: 190px;
+  	float: right;
+  	text-align: center;
+  }
+
+  .move {
+  	cursor: pointer;
+  }
+
+  #header {
+  	margin-bottom: 20px;
+  }
+
+  #moves {
+  	margin: 0px;
+  	padding: 0px;
+  }
+
+  #moves li {
+  	display: inline;
+  	float: left;
+  	padding-top: 2px;
+  	padding-bottom: 2px;
+  }
+
+  .moveNumberLabel {
+  	padding-left: 3%;
+  	width: 7%;
+  }
+
+  .move {
+  	width: 40%;
+  	padding-left: 5%;
+  }
+
+  li.move:nth-child(3n+3) {
+  	background-color: #ccc;
+  }
+
+  .activeMove {
+  	font-weight: bold;
+  }
+
+  .move.activeFullMove,.moveNumberLabel.activeFullMove {
+  	background-color: #eaeaea;
+  }
+
+  .move:nth-child(3n+3).activeFullMove {
+  	background-color: #eaeaea;
+  }
+
+  .moveLink {
+  	cursor: pointer;
+  	display: block;
+  	padding-top: 15px;
+  	padding-bottom: 15px;
+  	background-color: green;
+  	color: white;
+  	margin-top: 10px;
+  }
+
+  .highlight-white {
+    -webkit-box-shadow: inset 0 0 3px 3px yellow;
+	-moz-box-shadow: inset 0 0 3px 3px yellow;
+	box-shadow: inset 0 0 3px 3px yellow;  
+  }
+
+  .highlight-black {
+    -webkit-box-shadow: inset 0 0 3px 3px blue;
+    -moz-box-shadow: inset 0 0 3px 3px blue;
+    box-shadow: inset 0 0 3px 3px blue;  
+  }
+
+  .disabled {
+  	opacity: 0.5;
+  }
+
+  .move-eval {
+  	float: right;
+  	color: #666;
+  	margin-right: 10px;
+  }
+
+  .stockfishInfo {
+  	font-size: 80%;
+  }
+  </style>
+</head>
+
+<body>
+	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="js/chessboard-0.3.0.min.js"></script>
+	<script src="js/chess.js"></script>
+
+	<div id="container">
+		<div id="header">
+			<h2 id="header_event"></h2>
+			<strong>Dato:</strong> <span id="header_date"></span><br>
+			<strong>Hvit:</strong> <span id="header_white"></span><br>
+			<strong>Sort:</strong> <span id="header_black"></span><br>
+			<strong>Resultat:</strong> <span id="header_result"></span><br>
+		</div>
+
+		<div id="left-and-right">
+			<div id="left">
+				<div id="board" style="width: 400px;"></div>
+				<div id="previousMoveLinkContainer">
+					<a id="previousMoveLink" class="moveLink">Forrige</a>
+				</div>
+				<div id="nextMoveLinkContainer">
+					<a id="nextMoveLink" class="moveLink">Neste</a>
+				</div>
+			</div>
+
+			<div id="right">
+				<ol id="moves">
+				</ol>
+			</div>
+		</div>
+	</div>
+
+
+<textarea id="pgn" style="width: 300px; height: 300px;">
+[Event "Klubbmesterskap 2015"]
+[Site "Bodø sjakklag"]
+[Date "2015.09.22"]
+[Round "2"]
+[White "Karlsen, Terje"]
+[Black "Grytøyr, Kim"]
+[Result "0-1"]
+
+1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Bxc6 dxc6 5. b3 Bg4
+6. Bb2 Nf6 7. d3 Bd6 8. Nbd2 O-O 9. h3 Bxf3 10. Qxf3 Re8
+11. O-O b5 12. a4 Bb4 13. c3 Ba5 14. b4 Bb6 15. a5 Ba7
+16. Rad1 h6 17. Nb3 Qd6 18. Ba3 Qe6 19. Nc5 Bxc5 20. bxc5 Red8 
+21. Rd2 Rd7 22. Qf5 Qxf5 23. exf5 Ne4 24. Re2 Nxc3 25. Re3 Nd5
+26. Rxe5 b4 27. Bb2 Nf4 28. Rfe1 Kh7 29. d4 Nd3 *
+0-1 {White resigns}
+</textarea><br>
+<input id="loadButton" type="button" value="Last inn">
+<input id="toggleStockfish" type="button" value="Stockfish">
+<span class="stockfishInfo"><span id="movesEvaled">0</span> / <span id="movesTotal"></span> analysert (depth <span id="depth"></span>)</span>
+
+
+	<script>
+	var startPosition = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+	var cfg = {
+		position: 'start',
+	};
+	var board = ChessBoard('board', cfg);
+	var chess = new Chess();
+	var fenChess = new Chess();
+	var boardEl = $('#board');
+	var squareClass = 'square-55d63';
+	var currentMoveIndex = 0;
+	var moves = [];
+	var stockfish = new Worker("js/stockfish.js");
+	var engine = load_engine();
+	engine.send("isready");
+	var queue = load_queue();
+	var game_history = [];
+	var game_original_history = [];
+	var depth = 11;
+
+	function load_queue() {
+		var queue = {};
+		var messages = [];
+
+		queue.working = false;
+		queue.current_ply = 0;
+
+        function get_first_word(line) {
+            var space_index = line.indexOf(" ");
+            
+            if (space_index === -1) {
+                return line;
+            }
+
+            return line.substr(0, space_index);
+        }
+
+		queue.add = function(message, moveNumber) {
+			message = { message: message, ply: moveNumber };
+			messages.push(message);
+			queue.run();
+		}
+
+		queue.run = function() {
+			if (queue.working === false && engine.ready == true && messages.length > 0) {
+				queue.current_ply = messages[0].ply;
+				// console.log("Setting queue.current_ply to " + messages[0].ply + " and posting message " + messages[0].message);
+				stockfish.postMessage(messages[0].message);
+				if (get_first_word(messages[0].message) == "go") {
+					queue.working = true;
+				} else if (get_first_word(messages[0].message) == "position") {
+					// working = false;
+					queue.pop_and_go();
+				}
+			}
+		}
+
+		queue.pop_and_go = function() {
+			queue.working = false;
+			messages.shift();
+			if (messages.length > 0) {
+				queue.run();
+			}
+		}
+
+		queue.get = function() {
+			return messages;
+		}
+
+		queue.clear = function() {
+			messages = [];
+			queue.working = false;
+		}
+
+		return queue;
+	}
+
+	function load_engine() {
+		var engine = {
+			ready: false,
+		};
+
+        function get_first_word(line) {
+            var space_index = line.indexOf(" ");
+            
+            if (space_index === -1) {
+                return line;
+            }
+
+            return line.substr(0, space_index);
+        }
+
+        engine.send = function(message) {
+        	stockfish.postMessage(message);
+        }
+
+		engine.process = function(stream) {
+		    if (get_first_word(stream) == "Stockfish") {
+		    	engine.ready = true;
+
+		    	queue.working = false;
+		    	queue.run();
+		    	return;
+		    }
+
+		    var matches = stream.match(/depth (\d+) .*score (cp|mate) ([-\d]+) .*pv (.+)/),
+	                score,
+	                type,
+	                depth,
+	                pv,
+	                data;
+
+	        if (game_original_history.length) {
+		        if (matches) {
+		            depth = Number(matches[1]);
+		            type = matches[2];
+		            score = Number(matches[3]);
+		            pv = matches[4].split(" ");
+		            
+		            // Convert the relative score to an absolute score.
+		            if (queue.current_ply % 2 != 0) {
+		                score *= -1;
+		            }
+		            
+		            // game_history[ply].eval_score = score;
+		            // game_history[ply].eval_type = type;
+		            // game_history[ply].eval_depth = depth;
+		            // game_history[ply].eval_pv = pv;
+		            
+		            data = {score: score, type: type, depth: depth, pv: pv};
+		        } else {
+		            if (/score mate 0\b/.test(stream)) {
+		                // game_history[ply].eval_score = 0;
+		                // game_history[ply].eval_type = "mate";
+		                // game_history[ply].eval_depth = 0;
+		                data = {score: 0, type: "mate", depth: 0};
+		            }
+		        }
+		        if (data) {
+			        data.score = (data.score / 100).toFixed(2);
+			    	game_history[queue.current_ply] = data;
+			    	$('#eval-move-' + queue.current_ply).html(data.score);
+			    	$('#movesEvaled').html(game_history.length -1);
+			    	if (game_history.length >= game_original_history.length) {
+						$('#toggleStockfish').attr('disabled', false);
+			    	}
+			    }
+		    }
+		    if (get_first_word(stream) == "bestmove") {
+		    	queue.working = false;
+		    	queue.pop_and_go();
+		    }
+		}
+
+		return engine;
+	}
+
+	function getPgnFromElement(el) {
+		var lines =  $(el).val().split("\n");
+		var res = [];
+		for (i = 0; i < lines.length; i++) {
+			var line = lines[i].replace("\n", "");
+			if (line != "") {
+				res.push(line);
+			}
+		}
+		return res.join('\n');
+	}
+
+	function setHeader() {
+		var header = chess.header();
+		$('#header_event').html(header.Event + (header.Round ? " - runde " + header.Round : ""));
+		$('#header_white').html(header.White);
+		$('#header_black').html(header.Black);
+		$('#header_date').html(header.Date);
+		$('#header_result').html(header.Result);
+		$('#depth').html(depth);
+	}
+
+	stockfish.onmessage = function(event) {
+	    //NOTE: Web Workers wrap the response in an object.
+	    var stream = event.data ? event.data : event;
+	    engine.process(stream);
+	};
+
+	function makeMove(moveNumber) {
+		var newPosition = moves.slice(0, moveNumber);
+		var fullMove = Math.ceil(moveNumber / 2);
+
+		currentMoveIndex = moveNumber;
+
+		if (moveNumber == 0) {
+			$('#previousMoveLink').addClass('disabled');
+		} else {
+			$('#previousMoveLink').removeClass('disabled');
+		}
+
+		if ((moveNumber) >= moves.length) {
+			$('#nextMoveLink').addClass('disabled');
+		} else {
+			$('#nextMoveLink').removeClass('disabled');
+		}
+
+		$('.move').removeClass('activeMove');
+		$('#move' + moveNumber).addClass('activeMove');
+		if (moveNumber > 0) {
+			var movePositionInDiv = $('#fullmove' + fullMove).offset();
+			var top = (movePositionInDiv.top - $('#left-and-right').offset().top) + 10;
+			if (top >= $('#right').height()) {
+				$('#right').animate({
+					scrollTop: top
+				});
+			} else if (top < 0) {
+				$('#right').animate({
+					scrollTop: top
+				});
+			}
+		}
+		$('#moves li').removeClass('activeFullMove');
+		$('[data-fullmove="' + fullMove + '"]').addClass('activeFullMove');
+
+		chess.reset();
+		boardEl.find('.' + squareClass).removeClass('highlight-white').removeClass('highlight-black');
+		for (var i = 0; i < newPosition.length; i++) {
+			var move = chess.move(newPosition[i]);
+			if (i == (newPosition.length - 1)) {
+				if (move.color === 'w') {
+					boardEl.find('.square-' + move.from).addClass('highlight-white');
+					squareToHighlight = move.to;
+					colorToHighlight = 'white';
+				}
+				else {
+					boardEl.find('.square-' + move.from).addClass('highlight-black');
+					squareToHighlight = move.to;
+					colorToHighlight = 'black';    
+				}
+				boardEl.find('.square-' + squareToHighlight).addClass('highlight-' + colorToHighlight);
+			}
+		}
+
+		var fen = chess.fen();
+		var message = "position fen " + fen;
+
+		// queue.add(message);
+		// queue.add("go depth 15");
+
+		// stockfish.postMessage(message);
+		// stockfish.postMessage("go depth 15");
+
+		board.position(fen);
+	}
+
+	function resetStockfish() {
+		engine.send("stop");
+		engine.send("ucinewgame");
+		queue.clear();
+		fenChess.reset();
+		game_history = [];
+
+		$('#movesEvaled').html(0);
+		$('.move-eval').html('');
+		$('#toggleStockfish').attr('disabled', false);
+	}
+
+	function startStockfish() {
+		resetStockfish();
+
+		$('#toggleStockfish').attr('disabled', true);
+		for (var i = 0; i < moves.length; i++) {
+			var moveNumber = i + 1;
+
+			var movesString = movesString + " " + moves[i].from + moves[i].to;
+			var message = "position startpos moves " + movesString;
+
+			fenChess.move(moves[i].san);
+			var message = "position fen " + fenChess.fen();
+
+			queue.add(message, moveNumber);
+			queue.add("go depth " + depth, moveNumber);
+		}
+	}
+
+	function load() {
+		resetStockfish();
+
+		var pgn = getPgnFromElement('#pgn');
+		chess.load_pgn(pgn);
+
+		game_original_history = chess.history({ verbose: true });
+		moves = game_original_history;
+
+		$('#movesTotal').html(moves.length);
+
+		queue.clear();
+
+		var html = "";
+		var fullMoves = 1;
+		var movesString = "";
+
+		$('#moves').html('');
+
+		for (var i = 0; i < moves.length; i++) {
+			var moveNumber = i + 1;
+			if (moveNumber % 2 != 0) {
+				var el = '<li id="fullmove' + fullMoves + '" data-fullmove="' + fullMoves + '" class="moveNumberLabel">' + (fullMoves) + '.</li>';
+				$('#moves').append(el);
+				fullMoves++;
+			}
+			var el = '<li id="move' + moveNumber + '" data-move-number="' + moveNumber + '" data-fullmove="' + (fullMoves-1) + '" class="move">' + moves[i].san + ' <span id="eval-move-' + moveNumber + '" class="move-eval"></span></li>';
+			$('#moves').append(el);
+		}
+
+		$('.move').click(function() {
+			var moveNumber = $(this).data('move-number');
+			makeMove(moveNumber);
+		});
+
+		setHeader();
+		makeMove(0);
+	}
+
+	$(document).ready(function() {
+		load();
+
+		$('#loadButton').click(function() {
+			load();
+		});
+
+		$('#toggleStockfish').click(function() {
+			startStockfish();
+		});
+
+		$('#previousMoveLink').click(function() {
+			if (currentMoveIndex <= 0) return;
+			makeMove((currentMoveIndex - 1));
+		});
+
+		$('#nextMoveLink').click(function() {
+			if ((currentMoveIndex) >= moves.length) return;
+			makeMove((currentMoveIndex + 1));
+		});
+
+		$('body').keyup(function(e) {
+			var code = e.keyCode || e.which;
+			if (code == 37) {
+				if (currentMoveIndex <= 0) return;
+				makeMove((currentMoveIndex - 1));
+			}
+
+			if (code == 39) {
+				if ((currentMoveIndex) >= moves.length) return;
+				makeMove((currentMoveIndex + 1));
+			}
+		});
+	});
+
+	</script>  
+</body>
+</html>
