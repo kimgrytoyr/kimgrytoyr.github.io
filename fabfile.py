@@ -14,9 +14,9 @@ def status():
 
 def publish():
     with settings(abort_exception = FabricException):
-    	message = prompt("Enter commit message:", default="Fab publish")
+        message = prompt("Enter commit message:", default="Fab publish")
         try:
-			local('jekyll build')
-			local('cd ' + SITE_PATH + ' && git add . && git commit -m "%s" && git push origin master' % (message))
+            local('jekyll build')
+            local('cd ' + SITE_PATH + ' && git add . && git commit -m "%s" && git push origin master' % (message))
         except FabricException:
             print("Something wrong happened")
