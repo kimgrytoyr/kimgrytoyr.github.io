@@ -17,6 +17,6 @@ def publish():
         message = prompt("Enter commit message:", default="Fab publish")
         try:
             local('jekyll build')
-            local('cd ' + SITE_PATH + ' && git add . && git commit -m "%s" && git push origin master' % (message))
+            local('cd ' + SITE_PATH + ' && git add . && git commit -m "%s" && git push origin master && netlify deploy' % (message))
         except FabricException:
             print("Something wrong happened")

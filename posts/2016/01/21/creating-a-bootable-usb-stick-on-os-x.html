@@ -85,7 +85,7 @@
 <h2 id="convert-iso-to-img">Convert ISO to IMG</h2>
 <p>Open the terminal and type the following command:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">hdiutil convert -format UDRW -o target.img source.iso</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">hdiutil convert -format UDRW -o target.img source.iso</code></pre></figure>
 
 <p>Remember to replace the paths in the previous example.</p>
 
@@ -95,15 +95,15 @@
 
 <p>First, find the correct device node:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">diskutil list</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    diskutil list</code></pre></figure>
 
 <p>After you have successfully identified your USB stick, unmount the disk (replace <em>N</em> with the disk number):</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">diskutil unmountDisk /dev/diskN</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    diskutil unmountDisk /dev/diskN</code></pre></figure>
 
 <p>Finally, transfer the image to the USB stick (again, replace <em>N</em> with the disk number):</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo dd <span class="k">if</span><span class="o">=</span>target.img <span class="nv">of</span><span class="o">=</span>/dev/rdiskN <span class="nv">bs</span><span class="o">=</span>1m</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">	sudo dd <span class="k">if</span><span class="o">=</span>target.img <span class="nv">of</span><span class="o">=</span>/dev/rdiskN <span class="nv">bs</span><span class="o">=</span>1m</code></pre></figure>
 
 <p>After a short while, depending on the image size, your USB stick will be ready to use as a bootable media.</p>
 
@@ -114,8 +114,6 @@
 	<div class="divider"></div>
 
 	
-		
-	
 
 	
 		<div id="secondary" class="widget-area" role="complementary">
@@ -123,11 +121,11 @@
 		        <h1 class="widget-title">Related Posts</h1>
 		        <ul class="related-posts">
 		        
-		            <li><a href="/posts/linux/2016/01/21/trouble-booting-newer-linux-kernels-on-asus-vivopc-vm42.html">Trouble booting newer Linux kernels on Asus VivoPC VM42</a> &raquo; Jan 21, 2016</li>
+		            <li><a href="/posts/development/2014/09/03/opening-sublime-text-from-the-command-line.html">Opening Sublime Text from the command line</a> &raquo; Sep 3, 2014</li>
 		        
-		            <li><a href="/posts/development/2015/08/09/useful-git-tips.html">Useful git tips</a> &raquo; Aug 9, 2015</li>
+		            <li><a href="/posts/development/2014/07/09/case-sensitivty-problem-with-git-in-os-x.html">Case-sensitivity problem with Git in OS X</a> &raquo; Jul 9, 2014</li>
 		        
-		            <li><a href="/posts/email/2015/06/21/mutt-tips-and-tricks.html">mutt tips & tricks</a> &raquo; Jun 21, 2015</li>
+		            <li><a href="/posts/development/2015/08/09/basic-usage-of-git-svn.html">Basic usage of git-svn</a> &raquo; Aug 9, 2015</li>
 		        
 		        </ul>
 		    </aside>

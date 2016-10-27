@@ -99,7 +99,7 @@ this post to collect some features and tips that I’ve found myself often searc
 </ol>
 
 <h2 id="a-namefinding-messagesa-finding-messages-in-the-current-folder"><a name="finding-messages"></a> Finding messages in the current folder</h2>
-<p>The default keybinding for searching the current folder is <code>l</code>. After you’ve
+<p>The default keybinding for searching the current folder is <code class="highlighter-rouge">l</code>. After you’ve
 entered search/limiting mode, you can use a wide variety of combinations of
 flags and regular expressions to match messages:</p>
 
@@ -108,20 +108,20 @@ flags and regular expressions to match messages:</p>
 </blockquote>
 
 <h1 id="a-namecommon-flagsacommon-flags"><a name="common-flags"></a>Common flags</h1>
-<p><code>~N</code> New/unread messages</p>
+<p><code class="highlighter-rouge">~N</code> New/unread messages</p>
 
-<p><code>~F</code> Flagged messages</p>
+<p><code class="highlighter-rouge">~F</code> Flagged messages</p>
 
-<p><code>~B</code> Search the whole message, not only subject and sender’s name</p>
+<p><code class="highlighter-rouge">~B</code> Search the whole message, not only subject and sender’s name</p>
 
-<p><code>~A</code> All messages (you can also use <code>all</code>)</p>
+<p><code class="highlighter-rouge">~A</code> All messages (you can also use <code class="highlighter-rouge">all</code>)</p>
 
 <p>See the <a href="http://www.mutt.org/doc/manual/manual-4.html#ss4.2">official mutt documentation</a> for a full list of available patterns.</p>
 
 <h2 id="a-nametagging-messagesatagging-messages"><a name="tagging-messages"></a>Tagging messages</h2>
 <p>A common thing to do is to tag/mark all messages meeting certain criterias.
-This is very easy to do in <a href="http://www.mutt.org/">mutt</a> using the <code>tag-pattern</code> function. By
-default, this function is bound to <code>T</code> (that’s shift+t). You can then use the
+This is very easy to do in <a href="http://www.mutt.org/">mutt</a> using the <code class="highlighter-rouge">tag-pattern</code> function. By
+default, this function is bound to <code class="highlighter-rouge">T</code> (that’s shift+t). You can then use the
 same flags and regular expressions as you can when limiting messages.</p>
 
 <blockquote>
@@ -129,42 +129,42 @@ same flags and regular expressions as you can when limiting messages.</p>
 </blockquote>
 
 <p>After tagging messages, you’ll most likely want to do something with them. This
-is where the <code>tag-prefix</code> operator comes into play. This operator tells <a href="http://www.mutt.org/">mutt</a>
+is where the <code class="highlighter-rouge">tag-prefix</code> operator comes into play. This operator tells <a href="http://www.mutt.org/">mutt</a>
 to apply the next operation to all tagged messages. The default keybinding for
-<code>tag-prefix</code> is <code>;</code> (semicolon).</p>
+<code class="highlighter-rouge">tag-prefix</code> is <code class="highlighter-rouge">;</code> (semicolon).</p>
 
 <p>Here’s an example of how to tag all unread messages and mark them as read:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">T <span class="c"># Invokes the tag-pattern function</span>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">T <span class="c"># Invokes the tag-pattern function</span>
 ~N <span class="c"># Tags all unread messages</span>
-<span class="p">;</span> <span class="c"># tag-prefix operator, next operation will be applied to all tagged messages</span>
+; <span class="c"># tag-prefix operator, next operation will be applied to all tagged messages</span>
 W <span class="c"># Clear flag</span>
-N <span class="c"># Clear the N (unread) flag</span></code></pre></div>
+N <span class="c"># Clear the N (unread) flag</span></code></pre></figure>
 
 <h1 id="a-nameuntaggingauntagging-messages"><a name="untagging"></a>Untagging messages</h1>
-<p>In the beginning I often found myself searching for how to untag messages. It can be done the same as you tag messages, except that you have to use CTRL instead of SHIFT: <code>^t &lt;pattern&gt;</code>. To untag all messages, type <code>^t all</code>.</p>
+<p>In the beginning I often found myself searching for how to untag messages. It can be done the same as you tag messages, except that you have to use CTRL instead of SHIFT: <code class="highlighter-rouge">^t &lt;pattern&gt;</code>. To untag all messages, type <code class="highlighter-rouge">^t all</code>.</p>
 
 <h2 id="a-namechanging-pgp-signature-filenameachanging-the-pgp-signature-attachments-filename"><a name="changing-pgp-signature-filename"></a>Changing the PGP signature attachment’s filename</h2>
 <p>When using <a href="http://www.mutt.org/">mutt</a> with PGP, the default filename of the signature attachment
-is <code>noname</code>. Although this is a commonly used filename, I personally want it to
-be named <code>signature.asc</code>. To be able to do this, you’ll need to install <a href="http://www.mutt.org/">mutt</a>
-with the <code>pgp-verbose-mime-patch</code>. I’ve covered how to install <a href="http://www.mutt.org/">mutt</a> on Mac
+is <code class="highlighter-rouge">noname</code>. Although this is a commonly used filename, I personally want it to
+be named <code class="highlighter-rouge">signature.asc</code>. To be able to do this, you’ll need to install <a href="http://www.mutt.org/">mutt</a>
+with the <code class="highlighter-rouge">pgp-verbose-mime-patch</code>. I’ve covered how to install <a href="http://www.mutt.org/">mutt</a> on Mac
 OS X with this patch in the post <a href="/posts/email/2015/06/20/my-mutt-setup.html">My mutt setup</a> (dead link, coming soon).</p>
 
 <p>After you’ve installed <a href="http://www.mutt.org/">mutt</a> with this patch, it’s very simple to change the
 signature attachment’s filename. All you have to do is add the following line to
-your <code>.muttrc</code>:</p>
+your <code class="highlighter-rouge">.muttrc</code>:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">set </span><span class="nv">pgp_mime_signature_filename</span> <span class="o">=</span> <span class="s1">&#39;signature.asc&#39;</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">set </span>pgp_mime_signature_filename <span class="o">=</span> <span class="s1">'signature.asc'</span></code></pre></figure>
 
 <h2 id="a-namefrom-specific-signaturesafrom-specific-signatures"><a name="from-specific-signatures"></a>“From”-specific signatures</h2>
-<p>I have different email addresses based on what “role” I have. One (with several aliases) is for personal stuff, one is for work related stuff and one is for my freelance company. I’d like <a href="http://www.mutt.org/">mutt</a> to change my signature based on which address I send the email from. This is also fairly easy to accomplish. Just add the following line to <code>.muttrc</code> for each account you would like a specific signature for:</p>
+<p>I have different email addresses based on what “role” I have. One (with several aliases) is for personal stuff, one is for work related stuff and one is for my freelance company. I’d like <a href="http://www.mutt.org/">mutt</a> to change my signature based on which address I send the email from. This is also fairly easy to accomplish. Just add the following line to <code class="highlighter-rouge">.muttrc</code> for each account you would like a specific signature for:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">send-hook <span class="s2">&quot;~f from@address1.com&quot;</span> <span class="s1">&#39;set signature=~/.mutt/signature_for_address1&#39;</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">send-hook <span class="s2">"~f from@address1.com"</span> <span class="s1">'set signature=~/.mutt/signature_for_address1'</span></code></pre></figure>
 
 <p>This will tell <a href="http://www.mutt.org/">mutt</a> that <em>“whenever I send a message from
-<code>from@address1.com</code>, use the signature in the file
-<code>~/.mutt/signature_for_address1</code>“</em>.</p>
+<code class="highlighter-rouge">from@address1.com</code>, use the signature in the file
+<code class="highlighter-rouge">~/.mutt/signature_for_address1</code>“</em>.</p>
 
 <p>That’s it for now. I’ll continue to add useful mutt tips to this post.</p>
 
@@ -174,8 +174,6 @@ your <code>.muttrc</code>:</p>
 	<div class="divider"></div>
 
 	
-		
-	
 
 	
 		<div id="secondary" class="widget-area" role="complementary">
@@ -183,9 +181,11 @@ your <code>.muttrc</code>:</p>
 		        <h1 class="widget-title">Related Posts</h1>
 		        <ul class="related-posts">
 		        
-		            <li><a href="/posts/2016/01/21/creating-a-bootable-usb-stick-on-os-x.html">Creating a bootable USB stick on OS X</a> &raquo; Jan 21, 2016</li>
+		            <li><a href="/projects/2015/06/14/locationpicker.js.html">locationpicker.js</a> &raquo; Jun 14, 2015</li>
 		        
-		            <li><a href="/posts/development/2015/08/09/useful-git-tips.html">Useful git tips</a> &raquo; Aug 9, 2015</li>
+		            <li><a href="/posts/development/2014/09/03/opening-sublime-text-from-the-command-line.html">Opening Sublime Text from the command line</a> &raquo; Sep 3, 2014</li>
+		        
+		            <li><a href="/posts/development/2015/08/09/basic-usage-of-git-svn.html">Basic usage of git-svn</a> &raquo; Aug 9, 2015</li>
 		        
 		        </ul>
 		    </aside>

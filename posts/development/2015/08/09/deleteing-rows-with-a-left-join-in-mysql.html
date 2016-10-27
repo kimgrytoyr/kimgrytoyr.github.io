@@ -86,13 +86,13 @@
 
 <p>First, I usually do a visual inspection of the rows that will be deleted:</p>
 
-<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">i</span><span class="p">.</span><span class="o">*</span> <span class="k">FROM</span> <span class="n">images</span> <span class="n">i</span> <span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">users</span> <span class="n">u</span> <span class="k">ON</span> <span class="n">i</span><span class="p">.</span><span class="n">user_id</span> <span class="o">=</span> <span class="n">u</span><span class="p">.</span><span class="n">id</span> <span class="k">WHERE</span> <span class="n">u</span><span class="p">.</span><span class="n">deleted</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">i</span><span class="p">.</span><span class="o">*</span> <span class="k">FROM</span> <span class="n">images</span> <span class="n">i</span> <span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">users</span> <span class="n">u</span> <span class="k">ON</span> <span class="n">i</span><span class="p">.</span><span class="n">user_id</span> <span class="o">=</span> <span class="n">u</span><span class="p">.</span><span class="n">id</span> <span class="k">WHERE</span> <span class="n">u</span><span class="p">.</span><span class="n">deleted</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span></code></pre></figure>
 
 <p>The rows returned by this query are the rows that will be deleted when you run the following query:</p>
 
-<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">DELETE</span> <span class="n">i</span> <span class="k">FROM</span> <span class="n">images</span> <span class="n">i</span> <span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">users</span> <span class="n">u</span> <span class="k">ON</span> <span class="n">i</span><span class="p">.</span><span class="n">user_id</span> <span class="o">=</span> <span class="n">u</span><span class="p">.</span><span class="n">id</span> <span class="k">WHERE</span> <span class="n">u</span><span class="p">.</span><span class="n">deleted</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">DELETE</span> <span class="n">i</span> <span class="k">FROM</span> <span class="n">images</span> <span class="n">i</span> <span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">users</span> <span class="n">u</span> <span class="k">ON</span> <span class="n">i</span><span class="p">.</span><span class="n">user_id</span> <span class="o">=</span> <span class="n">u</span><span class="p">.</span><span class="n">id</span> <span class="k">WHERE</span> <span class="n">u</span><span class="p">.</span><span class="n">deleted</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span></code></pre></figure>
 
-<p>They key part here is to specify which table you want to delete from. In this case it’s the table <code>i</code>, which is the <code>images</code> table.</p>
+<p>They key part here is to specify which table you want to delete from. In this case it’s the table <code class="highlighter-rouge">i</code>, which is the <code class="highlighter-rouge">images</code> table.</p>
 
 	</article>
 
@@ -100,6 +100,23 @@
 
 	
 
+	
+		<div id="secondary" class="widget-area" role="complementary">
+		    <aside class="widget widget_related_posts">
+		        <h1 class="widget-title">Related Posts</h1>
+		        <ul class="related-posts">
+		        
+		            <li><a href="/posts/development/2014/07/09/case-sensitivty-problem-with-git-in-os-x.html">Case-sensitivity problem with Git in OS X</a> &raquo; Jul 9, 2014</li>
+		        
+		            <li><a href="/posts/2016/01/21/creating-a-bootable-usb-stick-on-os-x.html">Creating a bootable USB stick on OS X</a> &raquo; Jan 21, 2016</li>
+		        
+		            <li><a href="/projects/2015/06/14/locationpicker.js.html">locationpicker.js</a> &raquo; Jun 14, 2015</li>
+		        
+		        </ul>
+		    </aside>
+		</div>
+
+		<div class="divider"></div>
 	
 
 	<h1>Discussion</h1>

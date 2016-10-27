@@ -86,15 +86,15 @@
 
 <h2 id="cloning-the-svn-repository">Cloning the SVN repository</h2>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">git svn clone &lt;repo-url&gt;</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">git svn clone &lt;repo-url&gt;</code></pre></figure>
 
 <h2 id="adding-another-remote">Adding another remote</h2>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">git remote add &lt;remote-name&gt; &lt;remote-url&gt;</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">git remote add &lt;remote-name&gt; &lt;remote-url&gt;</code></pre></figure>
 
 <h2 id="fetching-and-rebasing-changes-from-svn">Fetching and rebasing changes from SVN</h2>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">git svn fetch <span class="o">&amp;&amp;</span> git svn rebase</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">git svn fetch <span class="o">&amp;&amp;</span> git svn rebase</code></pre></figure>
 
 <p>Note that the git-svn documentation has a section discussing rebase vs pull/merge:</p>
 
@@ -104,21 +104,21 @@
 
 <h2 id="doing-work-and-pushing-to-svn">Doing work and pushing to SVN</h2>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">git add &lt;file&gt;
-git commit -m <span class="s2">&quot;&lt;commit message&gt;&quot;</span>
-git svn dcommit <span class="c"># This will push your changes to the SVN repository</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">git add &lt;file&gt;
+git commit -m <span class="s2">"&lt;commit message&gt;"</span>
+git svn dcommit <span class="c"># This will push your changes to the SVN repository</span></code></pre></figure>
 
 <h2 id="pushing-to-other-remotes">Pushing to other remotes</h2>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">git push &lt;remote-name&gt;</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">git push &lt;remote-name&gt;</code></pre></figure>
 
 <h2 id="see-what-will-be-pushed-to-svn">See what will be pushed to SVN</h2>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">git diff git-svn HEAD <span class="c"># Assuming your remote SVN branch is called git-svn</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">git diff git-svn HEAD <span class="c"># Assuming your remote SVN branch is called git-svn</span></code></pre></figure>
 
 <p><a href="http://stackoverflow.com/a/9776318/1094451">http://stackoverflow.com/a/9776318/1094451</a></p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">git svn dcommit --dry-run</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">git svn dcommit --dry-run</code></pre></figure>
 
 <p><a href="http://stackoverflow.com/a/6040113/1094451">http://stackoverflow.com/a/6040113/1094451</a></p>
 
@@ -127,8 +127,6 @@ git svn dcommit <span class="c"># This will push your changes to the SVN reposit
 
 	<div class="divider"></div>
 
-	
-		
 	
 
 	
@@ -140,6 +138,8 @@ git svn dcommit <span class="c"># This will push your changes to the SVN reposit
 		            <li><a href="/posts/development/2015/08/09/useful-git-tips.html">Useful git tips</a> &raquo; Aug 9, 2015</li>
 		        
 		            <li><a href="/posts/development/2014/07/09/case-sensitivty-problem-with-git-in-os-x.html">Case-sensitivity problem with Git in OS X</a> &raquo; Jul 9, 2014</li>
+		        
+		            <li><a href="/posts/email/2015/06/21/mutt-tips-and-tricks.html">mutt tips & tricks</a> &raquo; Jun 21, 2015</li>
 		        
 		        </ul>
 		    </aside>
