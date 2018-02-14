@@ -1,2 +1,2 @@
 # kimgrytoyr.github.io
-Personal homepage.
+This is my personal homepage.
